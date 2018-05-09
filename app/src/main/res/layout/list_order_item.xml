@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/order_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="咖啡厅："
+            android:drawableLeft="@mipmap/affirm_01"
+            android:textColor="#003333"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="等待付款"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/text_pressed"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    <View
+        style="@style/h_line"/>
+    <com.sunday.common.widgets.NoScrollListview
+        android:id="@+id/no_scroll_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        style="@style/h_line_no_padding"/>
+    <RelativeLayout
+        android:id="@+id/rl_total_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/productNumTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/totleMoney"
+            android:text="合计:"
+            android:textColor="#003333"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/totleMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="20元"
+            android:padding="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/text_pressed"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        style="@style/h_line_no_padding"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:gravity="center"
+            android:textColor="@color/text_pressed"
+            tools:text="16-03-02"/>
+
+        <Button
+            android:id="@+id/order_btn1"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="使用"
+            android:visibility="visible"
+            tools:visibility="visible"
+            android:padding="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/common_radius_orange_shape"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</LinearLayout>

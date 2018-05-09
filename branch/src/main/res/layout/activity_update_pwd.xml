@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/et_old_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:hint="请输入原密码"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="#808080"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_bg" />
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/et_new_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:hint="请输入新密码"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="#808080"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_bg" />
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/et_new_pwd_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:hint="请确认密码"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="#808080"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/common_btn"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_shape_blue_bg"
+        android:text="下一步"
+        android:textColor="@color/white" />
+
+</LinearLayout>

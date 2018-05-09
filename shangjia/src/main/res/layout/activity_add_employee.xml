@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background">
+    <include layout="@layout/common_header"/>
+    <RelativeLayout
+        android:id="@+id/rl_add_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/window_background"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp">
+        <com.sunday.common.widgets.CircleImageView
+            android:id="@+id/employee_logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/add_server"/>
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/employee_logo"
+            android:layout_alignRight="@+id/employee_logo"
+            android:layout_marginRight="6dp"
+            android:src="@mipmap/camera"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/camera"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="添加头像"/>
+    </RelativeLayout>
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/employee_logo"
+        android:drawablePadding="7dp"
+        android:hint="请输入姓名"
+        android:textColorHint="@color/text_light_black"
+        android:textSize="15sp"/>
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/edit_phone"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/phone"
+        android:drawablePadding="7dp"
+        android:hint="请输入联系电话"
+        android:textColorHint="@color/text_light_black"
+        android:textSize="15sp"/>
+
+
+</LinearLayout>

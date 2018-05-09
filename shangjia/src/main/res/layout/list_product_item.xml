@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/product_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:src="@mipmap/logo" />
+
+    <TextView
+        android:id="@+id/product_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/product_img"
+        android:textColor="@color/text_not_pressed"
+        tools:text="aaaaaa" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/product_img"
+        android:layout_alignLeft="@+id/product_title"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@+id/product_img"
+        android:textColor="@color/text_not_pressed"
+        tools:text="aaaa" />
+
+    <TextView
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/product_img"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/common_blue_radius_shape"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/white"
+        tools:text="下架" />
+
+    <TextView
+        android:id="@+id/btn2"
+        android:layout_toLeftOf="@+id/btn1"
+        android:layout_marginRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/product_img"
+        android:background="@drawable/common_blue_radius_shape"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/white"
+        tools:text="定价" />
+</RelativeLayout>

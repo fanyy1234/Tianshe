@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+    tools:context="com.sunday.tianshe.branch.fragment.PersonInfoFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_person_bg"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="40dp">
+
+        <com.sunday.common.widgets.CircleImageView
+            android:id="@+id/avater"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_login_logo"/>
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/avater"
+            android:text="西湖区分店"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/avater"
+            android:layout_below="@+id/shop_name"
+            android:layout_marginTop="20dp"
+            android:text="土豪熊"
+            android:textColor="#ffffff" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shopping_cart_item_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/child_account_manage"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:drawableLeft="@mipmap/ic_my"
+        android:background="#ffffff"
+        android:drawablePadding="12dp"
+        android:drawableRight="@drawable/shopping_cart_item_arrow"
+        android:paddingRight="16dp"
+        android:text="子账号管理" />
+    <View
+        style="@style/h_line_no_padding"/>
+
+    <TextView
+        android:id="@+id/update_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:drawableLeft="@mipmap/ic_update_pwd"
+        android:background="#ffffff"
+        android:drawableRight="@drawable/shopping_cart_item_arrow"
+        android:paddingRight="16dp"
+        android:drawablePadding="12dp"
+        android:text="修改密码" />
+    <View
+        style="@style/h_line_no_padding"/>
+    <TextView
+        android:id="@+id/setting"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:background="#ffffff"
+        android:drawableRight="@drawable/shopping_cart_item_arrow"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/ic_setting"
+        android:drawablePadding="12dp"
+        android:text="设置" />
+    <View
+        style="@style/h_line_no_padding"/>
+</LinearLayout>

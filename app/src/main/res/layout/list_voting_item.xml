@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/rl_voting"
+    android:padding="10dp">
+    <ImageView
+        android:id="@+id/voting_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+    <TextView
+        android:id="@+id/voting_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/voting_img"
+        android:layout_marginLeft="10dp"
+        android:maxLines="1"/>
+
+    <View
+        android:id="@+id/view"
+       style="@style/h_line"
+        android:layout_below="@+id/voting_img"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:id="@+id/txt_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@mipmap/vote_agree"
+        android:text="赞成"/>
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/view"
+        android:background="@color/window_background"/>
+    <TextView
+        android:id="@+id/txt_disagree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@mipmap/disagree"
+        android:text="反对"/>
+
+    <TextView
+        android:id="@+id/voting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/clock1"
+        android:drawablePadding="5dp"
+        android:layout_above="@+id/view"
+        android:layout_toRightOf="@+id/vote_img"
+        android:layout_toEndOf="@+id/voting_img"
+        android:layout_marginLeft="10dp"/>
+
+
+</RelativeLayout>

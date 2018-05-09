@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <include layout="@layout/common_header"/>
+
+        <ImageView
+            android:id="@+id/vote_img"
+            android:layout_below="@+id/common_header"
+            android:layout_width="match_parent"
+            android:layout_height="165dp" />
+
+        <TextView
+            android:id="@+id/vote_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vote_img"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/voting_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vote_title"
+            android:drawableLeft="@mipmap/clock1"
+            android:drawablePadding="5dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            tools:text="aaa" />
+
+        <View
+            android:id="@+id/view"
+            style="@style/h_line"
+            android:layout_below="@+id/voting_time" />
+
+        <TextView
+            android:id="@+id/txt_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@mipmap/vote_agree"
+            android:drawablePadding="4dp"
+            android:text="赞成" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/window_background" />
+
+        <TextView
+            android:id="@+id/txt_disagree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@mipmap/disagree"
+            android:drawablePadding="4dp"
+            android:text="反对" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_below="@+id/txt_disagree"
+            android:layout_marginTop="15dp"
+            android:background="@color/window_background" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:layout_below="@id/view1"
+            android:layout_marginTop="12dp"
+            android:background="@color/text_pressed" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/view3"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/view3"
+            android:text="详情介绍" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view3"/>
+
+    </RelativeLayout>
+</ScrollView>

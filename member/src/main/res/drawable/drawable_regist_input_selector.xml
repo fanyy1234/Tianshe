@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle" >
+            <padding android:bottom="7dp" android:left="7dp"
+                android:right="7dp" android:top="7dp" />
+            <!-- 设置圆角矩形 -->
+            <corners android:radius="3dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorPrimary" />
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle" >
+
+            <padding
+                android:bottom="7dp" android:left="7dp"
+                android:right="7dp" android:top="7dp" />
+            <!-- 设置圆角矩形 -->
+            <corners android:radius="3dp" />
+
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorPrimary" />
+
+            <solid android:color="#ffffff" />
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="#efefef" />
+            <solid android:color="#ffffff" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/title_layout"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/title"
+            android:layout_marginRight="10dp"
+            android:text="上架产品"
+            android:textColor="@drawable/product_select_color"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/title"
+            android:layout_marginLeft="10dp"
+            android:text="下架产品"
+            android:clickable="true"
+            android:textColor="@drawable/product_select_color"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+    <com.sunday.common.widgets.ViewPager
+        android:layout_marginTop="1px"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_layout">
+
+    </com.sunday.common.widgets.ViewPager>
+
+
+
+</LinearLayout>

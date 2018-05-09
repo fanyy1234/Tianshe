@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <com.sunday.common.widgets.CircleImageView
+            android:id="@+id/avator"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/person_default" />
+
+        <TextView
+            android:id="@+id/user_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/avator"
+            android:layout_marginLeft="16dp"
+            android:text="搁浅" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_toRightOf="@+id/user_nick"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+
+        <TextView
+            android:id="@+id/comment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/avator"
+            android:layout_alignLeft="@+id/user_nick"
+            android:text="搁浅"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/comment_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="4dp"
+        android:text="味道非常棒" />
+
+    <com.sunday.common.widgets.NoScrollGridView
+        android:id="@+id/images"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="16dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="5"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:verticalSpacing="5dp" />
+</LinearLayout>

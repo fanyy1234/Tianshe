@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_member_auth_success"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+    tools:context="com.sunday.tianshe.branch.ui.MemberAuthSuccessActivity">
+    <include layout="@layout/common_header"/>
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/member_success"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:text="会员认证信息提交成功!"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:text="等待后台审核!"/>
+
+    <TextView
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_shape_blue_bg"
+        android:gravity="center"
+        android:text="返回会员认证列表"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/window_background">
+    <include layout="@layout/common_header"/>
+
+    <TextView
+        android:id="@+id/check_update"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_white_selector"
+        android:drawableRight="@drawable/shopping_cart_item_arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="16px"
+        android:text="检查更新" />
+
+    <LinearLayout
+        android:id="@+id/l_clearCache"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_white_selector"
+        android:paddingRight="16dp"
+        android:layout_marginTop="16px"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="清除缓存"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_cacheSize"
+            android:text="2.1M"
+            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/shopping_cart_item_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background">
+    <include layout="@layout/common_header"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="环境卫生"
+            />
+        <RatingBar
+            android:id="@+id/environ_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt1"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家服务"
+            android:layout_below="@+id/txt1"
+            android:layout_marginTop="10dp"
+            />
+        <RatingBar
+            android:id="@+id/service_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt2"
+            android:layout_alignTop="@+id/txt2"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品质量"
+            android:layout_below="@+id/txt2"
+            android:layout_marginTop="10dp"
+            />
+        <RatingBar
+            android:id="@+id/quality_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt3"
+            android:layout_alignTop="@+id/txt3"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+    </RelativeLayout>
+
+    <EditText
+        android:layout_marginTop="1px"
+        android:id="@+id/edit_comment"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="说两句吧..."
+        android:maxLines="5"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:textColorHint="#999999"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <com.sunday.common.widgets.gridview.NoScrollGridView
+            android:id="@+id/images"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="4"
+            android:verticalSpacing="10dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/common_radius_orange_shape"
+        android:textColor="@color/white"
+        android:text="提交"/>
+
+</LinearLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="时间段" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/select_day"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:checked="true"
+                android:text="当天" />
+
+            <RadioButton
+                android:id="@+id/select_week"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/select_day"
+                android:text="本周" />
+
+            <RadioButton
+                android:id="@+id/select_month"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/select_week"
+                android:text="本月" />
+
+            <RadioButton
+                android:id="@+id/select_self"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/select_month"
+                android:text="自定义" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_select_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:paddingLeft="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txt_self"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="自定义" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/txt_self"
+            android:drawableRight="@mipmap/arrow_down"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:drawableLeft="@mipmap/date"
+            android:drawablePadding="3dp"
+            tools:text="aaaaa" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@mipmap/date"
+            android:drawablePadding="3dp"
+            android:layout_marginRight="15dp"
+            android:drawableRight="@mipmap/arrow_down"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            tools:text="aaaaa" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="合计：" />
+
+        <TextView
+            android:id="@+id/text_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text_pressed" />
+    </LinearLayout>
+
+    <include layout="@layout/fragment_recycler_list" />
+</LinearLayout>

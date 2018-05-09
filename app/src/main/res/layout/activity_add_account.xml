@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+    <include layout="@layout/common_header"/>
+    <TextView
+        android:layout_margin="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请添加您本人银行卡" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="真实姓名："/>
+        <EditText
+            android:id="@+id/account_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开户行："/>
+        <TextView
+            android:id="@+id/account_type"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:hint="请选择"
+            android:textSize="14sp"
+            android:drawableRight="@mipmap/arrow_down"
+            android:background="@null"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卡号："/>
+        <EditText
+            android:id="@+id/account_no"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bth_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="65dp"
+        android:background="@color/text_pressed"
+        android:text="确认"
+        android:textColor="@color/white" />
+
+
+
+
+</LinearLayout>

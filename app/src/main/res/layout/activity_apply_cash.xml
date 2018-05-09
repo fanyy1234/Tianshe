@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/common_header"/>
+    <TextView
+        android:id="@+id/txt_select_account"
+        android:text="选择提现账户"
+        android:paddingLeft="16dp"
+        android:paddingRight="14dp"
+        android:drawableRight="@mipmap/arrow_right"
+        android:layout_marginTop="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        style="@style/h_line_no_padding"/>
+
+    <LinearLayout
+        android:id="@+id/l_select"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.sunday.common.widgets.CircleImageView
+            android:id="@+id/img"
+            tools:src="@mipmap/bank_card"
+            android:layout_marginLeft="16dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:text="账户名称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_bank_card"
+                android:text="账号"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_usable_count"
+        android:text="可提现金额 ￥600"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/tv_count"
+        android:hint="输入提现金额"
+        android:textColorHint="#30000000"
+        android:padding="16dp"
+        android:background="#fff"
+        android:textSize="15sp"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_pressed"
+        android:text="提现到账时间为2个工作日"/>
+    <Button
+        android:id="@+id/btn_getcash"
+        android:text="提现"
+        style="@style/common_btn"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/common_radius_orange_shape"
+        android:enabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

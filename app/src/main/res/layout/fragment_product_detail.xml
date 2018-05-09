@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/window_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shop_address"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/call_shop"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/addr"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="西湖区留下路237号"
+                android:textColor="#333333" />
+
+            <View style="@style/v_line" />
+
+            <ImageView
+                android:id="@+id/call_shop"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@mipmap/phone" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:drawableLeft="@mipmap/shop"
+            android:drawablePadding="4dp"
+            android:padding="10dp"
+            android:text="商家简介"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            android:padding="10dp" />
+    </LinearLayout>
+</ScrollView>

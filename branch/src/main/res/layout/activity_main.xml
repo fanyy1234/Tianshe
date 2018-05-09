@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f7f7f7"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/tab1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:text="会员认证"
+            android:textColor="@drawable/main_bottom_tab_text"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/main_bottom_tab1"
+            android:drawablePadding="5dp"/>
+        <TextView
+            android:id="@+id/tab2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="2dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:text="商家管理"
+            android:textColor="@drawable/main_bottom_tab_text"
+            android:gravity="bottom|center_horizontal"
+            android:drawableTop="@drawable/main_bottom_tab2"
+            android:drawablePadding="5dp"/>
+        <TextView
+            android:id="@+id/tab3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:drawableTop="@drawable/main_bottom_tab3"
+            android:text="收益统计"
+            android:textColor="@drawable/main_bottom_tab_text"
+            android:gravity="bottom|center_horizontal"
+            android:drawablePadding="5dp"/>
+        <TextView
+            android:id="@+id/tab4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:drawableTop="@drawable/main_bottom_tab4"
+            android:text="个人中心"
+            android:textColor="@drawable/main_bottom_tab_text"
+            android:gravity="bottom|center_horizontal"
+            android:drawablePadding="5dp"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        style="@style/h_line_no_padding"
+        android:layout_above="@+id/bottom_menu"/>
+    <com.sunday.common.widgets.ViewPager
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/line" >
+    </com.sunday.common.widgets.ViewPager>
+</RelativeLayout>

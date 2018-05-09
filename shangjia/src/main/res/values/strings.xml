@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">天奢商家版</string>
+
+    <string name="profit_introduce">(每月5号结算上月营业额,\n支出及利润本月只能查询上月情况)</string>
+    <string name="profit_intriduce01">纯利润的50%分给公司</string>
+    <string name="network_error">网络连接失败，请稍后再试</string>
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
+
+
+  <string name="send_code_success">
+     验证码已发送到手机
+    </string>
+    <string name="send_code_failed">
+     验证码发送失败，请重试
+    </string>
+
+
+</resources>

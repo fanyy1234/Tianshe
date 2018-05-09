@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/statistic_bg"
+        android:paddingTop="10dp">
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享收益统计"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:id="@+id/left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:src="@drawable/ic_back"/>
+
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_view"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"
+            android:text="分享总收益"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text1"
+            android:layout_alignLeft="@id/text1"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            tools:text="aaa"/>
+
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/text1"
+            android:layout_marginRight="60dp"
+            android:text="可提现收益"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/can_apply_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text2"
+            android:layout_alignLeft="@id/text2"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            tools:text="aaa"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="时间段" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/select_month"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/select_week"
+                android:checked="true"
+                android:text="上月" />
+            <RadioButton
+                android:id="@+id/select_self"
+                style="@style/btn_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/select_month"
+                android:text="自定义" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_select_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:paddingLeft="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txt_self"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="自定义" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/txt_self"
+            android:drawableRight="@mipmap/arrow_down"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:drawableLeft="@mipmap/date"
+            android:drawablePadding="3dp"
+            tools:text="aaaaa" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@mipmap/date"
+            android:drawablePadding="3dp"
+            android:layout_marginRight="15dp"
+            android:drawableRight="@mipmap/arrow_down"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            tools:text="aaaaa" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计："
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/text_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text_pressed"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    <com.sunday.common.widgets.EmptyLayout
+        android:id="@+id/emptylayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+</LinearLayout>

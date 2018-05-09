@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">天奢国际</string>
+
+    <array name="product_detail">
+        <item>商品</item>
+        <item>评价</item>
+        <item>详情</item>
+    </array>
+
+    <string name="recharge_introduce">
+        如因充值金额太高，无法完成充值，可联系客服进行线下充值
+        客服电话：0579-8888888
+    </string>
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
+
+    <string name="network_error">网络连接失败，请稍后再试</string>
+
+  <string name="send_code_success">
+     验证码已发送到手机
+    </string>
+    <string name="send_code_failed">
+     验证码发送失败，请重试
+    </string>
+    <string name="desc">例如:12号桌(请填写实际桌号，避免送餐错误)</string>
+
+
+
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+</resources>

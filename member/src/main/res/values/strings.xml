@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Member</string>
+
+    <string name="regist_tips">点击上面按钮"下一步"即表示您同意</string>
+    <string name="regist_pwd_tips">密码由6-20位英文字母,数字或下划线组成</string>
+    <string name="mobile_cn">+86 %1$s</string>
+</resources>

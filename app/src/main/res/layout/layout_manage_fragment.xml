@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/window_background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/my_bg"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:text="个人中心"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <com.sunday.common.widgets.CircleImageView
+                android:id="@+id/user_logo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="80dp"
+                android:src="@mipmap/default_img" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="95dp"
+                android:layout_toRightOf="@+id/user_logo"
+                android:textColor="@color/white"
+                tools:text="aaaa" />
+
+            <TextView
+                android:id="@+id/user_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/user_name"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/user_name"
+                android:background="@drawable/common_circle_orange_with_border_shape"
+                android:paddingBottom="1dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="1dp"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                tools:text="首批会员" />
+            <TextView
+                android:id="@+id/txt_consume_money"
+                android:layout_width="wrap_content"
+                android:layout_alignLeft="@id/user_name"
+                android:layout_below="@id/user_name"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:layout_height="wrap_content"
+                android:text="消费余额(元):"/>
+            <TextView
+                android:id="@+id/consume_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txt_consume_money"
+                android:layout_alignTop="@id/txt_consume_money"
+                android:layout_marginLeft="7dp"
+                android:textColor="@color/text_pressed"/>
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_logo"
+                android:layout_marginLeft="60dp"
+                android:drawableTop="@mipmap/menu1"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:text="分红收益统计" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_alignTop="@id/text1"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                android:background="@color/text_pressed"/>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/share"
+                android:drawablePadding="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/text1"
+                android:layout_marginRight="60dp"
+                android:visibility="gone"
+                android:text="分享收益统计" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/menu1"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@mipmap/menu1_new"
+            android:text="设置提现账户"/>
+
+        <TextView
+            android:id="@+id/menu2"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu2"
+            android:text="提现记录" />
+
+        <TextView
+            android:id="@+id/menu3"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu3"
+            android:text="充值" />
+
+        <TextView
+            android:id="@+id/menu4"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu4"
+            android:text="投票参与" />
+
+        <TextView
+            android:id="@+id/menu5"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu5"
+            android:text="留言反馈" />
+
+        <TextView
+            android:id="@+id/menu6"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu6"
+            android:text="设置" />
+    </LinearLayout>
+
+</ScrollView>

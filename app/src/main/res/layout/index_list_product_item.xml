@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+    android:id="@+id/category_min_img"
+    android:layout_alignParentLeft="true"
+    android:layout_alignBottom="@+id/index_check_more"
+    android:layout_width="22dp"
+        android:layout_marginLeft="4dp"
+    android:layout_height="22dp"
+    tools:src="@mipmap/index_category1"/>
+
+    <ImageView
+        android:id="@+id/category_main_img"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/index_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="高级自助餐"
+        android:maxLength="4"
+        android:layout_alignBaseline="@+id/index_check_more"
+        android:layout_alignBottom="@+id/index_check_more"
+        android:layout_toRightOf="@+id/category_min_img"
+        android:layout_toEndOf="@+id/category_min_img"
+        android:textSize="13sp"
+        android:layout_marginLeft="3dp" />
+
+    <TextView
+        android:id="@+id/index_check_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_circle_gray_shape"
+        android:layout_toRightOf="@+id/index_title"
+        android:layout_marginLeft="12dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:textColor="@color/login_btn_color"
+        android:layout_marginBottom="3dp"
+        android:textSize="11sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="立即前往>>"
+        android:layout_below="@+id/category_main_img"/>
+</RelativeLayout>

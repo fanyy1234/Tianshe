@@ -1,0 +1,230 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@mipmap/earnings_bg" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="收益统计" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="本月营业额(元)"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="(每月5号结算上月营业额,支出及利润本月只能查询上月情况)"
+            android:textColor="@color/white"/>
+        </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="选择时间段进行查询" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/calendar"
+            android:drawableRight="@drawable/shopping_cart_item_arrow"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="2016-9-11" />
+
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/calendar"
+            android:drawableRight="@drawable/shopping_cart_item_arrow"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="2016-9-11" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/income_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="80dp">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/store_02" />
+
+            <TextView
+                android:id="@+id/proftt_txt"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/image1"
+                android:gravity="left|center_vertical"
+                android:text="收入" />
+
+            <TextView
+                android:id="@+id/income_txt"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/proftt_txt"
+                android:gravity="center"
+                android:text="￥:0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/proftt_txt"
+                android:layout_toRightOf="@+id/image1"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/store_05"
+                android:gravity="center"
+                android:text="查看明细"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cost_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="80dp">
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/store_03" />
+
+            <TextView
+                android:id="@+id/cengben_txt"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/image2"
+                android:gravity="left|center_vertical"
+                android:text="成本" />
+
+            <TextView
+                android:id="@+id/cost_txt"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/cengben_txt"
+                android:gravity="center"
+                android:text="￥:0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cengben_txt"
+                android:layout_toRightOf="@+id/image2"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/store_05"
+                android:gravity="center"
+                android:text="查看明细"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="80dp">
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/store_04" />
+
+            <TextView
+                android:id="@+id/in_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/image3"
+                android:layout_centerHorizontal="true"
+                android:gravity="left|center_vertical"
+                android:text="利润" />
+
+            <TextView
+                android:id="@+id/profit_txt"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/in_txt"
+                android:gravity="center"
+                android:text="￥:0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/in_txt"
+                android:layout_toRightOf="@+id/image3"
+                android:gravity="center"
+                android:text="纯利润的50%分给分公司"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

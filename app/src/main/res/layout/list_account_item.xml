@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+    <RelativeLayout
+        android:id="@+id/viewItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/money_bg">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            tools:src="@mipmap/bank_card"/>
+        <TextView
+            android:id="@+id/txt"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/image"
+            android:textSize="15dp"
+            android:text="支付宝"/>
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_below="@+id/txt"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/image"
+            android:textSize="13dp"
+            android:text="何明明"/>
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_below="@+id/txt2"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/image"
+            android:textSize="13dp"
+            android:layout_marginBottom="15dp"
+            android:text="何明明"/>
+        <ImageView
+            android:id="@+id/del"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/money_del"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

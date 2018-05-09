@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background">
+    <include layout="@layout/common_header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1px"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="环境卫生:"
+            android:drawableLeft="@mipmap/evaluate_01"
+            android:drawablePadding="4dp"/>
+        <RatingBar
+            android:id="@+id/environ_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt1"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家服务:"
+            android:drawableLeft="@mipmap/evaluate_02"
+            android:drawablePadding="4dp"/>
+        <RatingBar
+            android:id="@+id/shop_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt1"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
+        android:background="@color/white"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品质量:"
+            android:drawableLeft="@mipmap/evaluate_03"
+            android:drawablePadding="4dp"/>
+        <RatingBar
+            android:id="@+id/service_star"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt1"
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical"
+            android:max="5"
+            android:numStars="5"
+            android:rating="5" />
+    </LinearLayout>
+
+    <include layout="@layout/fragment_recycler_list"/>
+
+</LinearLayout>

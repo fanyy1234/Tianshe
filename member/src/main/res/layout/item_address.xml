@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_bar"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="王静"
+            android:textSize="16sp"
+            android:textColor="#999999"/>
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/name"
+            android:text="12131121"
+            android:textSize="16sp"
+            android:textColor="#999999"/>
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="浙江省杭州市西湖区黄姑山路29号1302" />
+
+        <TextView
+            android:id="@+id/car_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="车牌号:  浙A88888" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/shopping_cart_item_arrow" />
+
+
+    </RelativeLayout>
+    <View
+        style="@style/h_line"/>
+    <RelativeLayout
+        android:id="@+id/default_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+        <CheckBox
+            android:id="@+id/choice"
+            style="@style/checkBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:checked="false"
+            android:focusable="true"
+            android:textColor="#666666"
+            android:focusableInTouchMode="false"
+            android:visibility="gone"
+            android:text="设置默认地址" />
+
+
+        <TextView
+            android:id="@+id/edite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/app_address_edit"
+            android:layout_toLeftOf="@+id/delete"
+            android:gravity="center"
+            android:drawablePadding="5dp"
+            android:layout_marginRight="10dp"
+            android:text="编辑"/>
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/app_address_delete"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="删除"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.sunday.tianshehuoji.widgets.ScrollableLayout
+        android:id="@+id/rootliner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.sunday.common.widgets.banner.ConvenientBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="175dp" />
+            <RelativeLayout
+                android:id="@+id/rl_select_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_white"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:drawableLeft="@mipmap/date"
+                    android:drawablePadding="3dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="日期"/>
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toLeftOf="@+id/time"
+                    android:drawableLeft="@mipmap/date"
+                    android:drawablePadding="3dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="日期"/>
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:drawableRight="@mipmap/arrow_down"
+                    tools:text="aaaaa"/>
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:drawableRight="@mipmap/arrow_down"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    tools:text="aaaaa"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/txt1"
+                    android:layout_toEndOf="@+id/txt1"
+                    android:layout_marginStart="13dp" />
+            </RelativeLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                app:tabIndicatorColor="@color/text_pressed"
+                app:tabSelectedTextColor="@color/text_pressed"
+                >
+            </android.support.design.widget.TabLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1px">
+            </android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </com.sunday.tianshehuoji.widgets.ScrollableLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

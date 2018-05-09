@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@mipmap/login_bg"
+
+    android:orientation="vertical"
+    tools:context=".ui.login.LoginActivity">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:src="@mipmap/login_logo" />
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/user_alt"
+        android:drawablePadding="10dp"
+        android:background="@null"
+        android:hint="请输入账号"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:textColor="@color/text_not_pressed"
+        android:textColorHint="@color/light_white"
+        android:textSize="15sp" />
+
+    <View style="@style/h_line_no_padding"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/text_pressed"/>
+
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@null"
+        android:drawableLeft="@mipmap/unlock"
+        android:drawablePadding="10dp"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColor="@color/text_not_pressed"
+        android:singleLine="true"
+        android:textColorHint="@color/light_white"
+        android:textSize="15sp" />
+
+    <View style="@style/h_line_no_padding"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/text_pressed"/>
+    <TextView
+        android:id="@+id/text_findPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/text_pressed"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"
+        android:text="忘记密码" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/common_circle_blue_shape"
+        android:text="登录"
+        android:textSize="15sp"
+        android:textColor="@color/white" />
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sunday.tianshe.branch">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 【可选】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+
+    <application
+        android:name=".base.BaseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".base.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MemberAuthActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" />
+        <activity
+            android:name=".ui.RecommondMemberActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" />
+        <activity android:name=".ui.MemberAuthSuccessActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.ShopDetailActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.ChildAccountListActivity" />
+        <activity android:name=".ui.AddChildAccountActivity" />
+        <activity android:name=".ui.PersonInfoActivity" />
+        <activity android:name=".ui.InComeDetailActivity" />
+        <activity
+            android:name=".ui.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.ForgetPwdActivity" />
+        <activity android:name=".ui.UpdatePwdActivity"/>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService"/>
+    </application>
+
+</manifest>

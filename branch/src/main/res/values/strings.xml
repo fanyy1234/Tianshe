@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">天奢分公司版</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="shop_titles">
+        <item>收益信息</item>
+        <item>产品信息</item>
+    </string-array>
+    <string name="title_activity_setting">SettingActivity</string>
+</resources>

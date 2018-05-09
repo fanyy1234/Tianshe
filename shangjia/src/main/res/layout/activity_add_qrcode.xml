@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_header"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="请输入核销码"/>
+    <com.sunday.common.widgets.ClearEditText
+        android:id="@+id/edit_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textColor="@color/text_not_pressed"
+        android:textSize="15sp"
+        tools:text="1111"/>
+  <Button
+      android:id="@+id/btn_submit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="40dp"
+      android:layout_marginRight="40dp"
+      android:layout_marginTop="60dp"
+      android:background="@drawable/common_blue_radius_shape"
+      android:textColor="@color/white"
+      android:text="确认核销"/>
+
+</LinearLayout>

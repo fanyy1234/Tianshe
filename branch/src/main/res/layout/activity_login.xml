@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@mipmap/login_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="60dp"
+    android:gravity="center_horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_login_logo"/>
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:singleLine="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        android:drawablePadding="6dp"
+        android:drawableLeft="@mipmap/ic_user_name" />
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:singleLine="true"
+        android:inputType="textPassword"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        android:drawablePadding="6dp"
+        android:drawableLeft="@mipmap/ic_pwd" />
+    <TextView
+        android:id="@+id/for_get_pwd"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:paddingLeft="16dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="12dp"
+        android:text="忘记密码?"/>
+    <TextView
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:background="@drawable/shape_blue_bg"
+        android:text="登录"/>
+</LinearLayout>

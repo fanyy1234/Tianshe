@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="验证码已发送到手机:"/>
+        <TextView
+            android:id="@+id/mobile_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+86 18667909689"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <EditText
+            android:id="@+id/validate_code"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="验证码"
+            android:background="@drawable/drawable_regist_input_selector"
+            android:layout_weight="3"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:text="重新发送"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>
