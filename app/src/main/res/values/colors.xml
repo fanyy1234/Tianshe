@@ -63,4 +63,42 @@
     <color name="transparent_black_20">#8c000000</color>
     <color name="_e61518">#e61518</color>
     <color name="vice_color">#f46b10</color>
+
+    <color name="_666">#666666</color>
+    <color name="_555">#555555</color>
+    <color name="_888">#888888</color>
+    <color name="_333">#333333</color>
+    <color name="_999">#999999</color>
+    <color name="_777">#777777</color>
+    <color name="_444">#444444</color>
+    <color name="_f5f4f9">#f5f4f9</color>
+    <color name="_f5f5f5">#f5f5f5</color>
+    <color name="_f2f2f2">#f2f2f2</color>
+    <color name="_fefefe">#fefefe</color>
+    <color name="_f4f4f4">#f4f4f4</color>
+    <color name="_f7f7f7">#f7f7f7</color>
+    <color name="_9aa6a2">#9aa6a2</color>
+    <color name="_000000">#000000</color>
+    <color name="_c4c4c4">#c4c4c4</color>
+    <color name="_b3b3b3">#b3b3b3</color>
+    <color name="_f58d95">#f58d95</color>
+    <color name="_ef0022">#ef0022</color>
+    <color name="_808080">#808080</color>
+    <color name="_ed8e9b">#ed8e9b</color>
+    <color name="_20_ffffff">#20ffffff</color>
+    <color name="_ff482a">#ff482a</color>
+    <color name="_f1bcea">#f1bcea</color>
+    <color name="black_bg">#333132</color>
+
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+
+
+    <color name="black_7">#777777</color>
+    <color name="white_fe">#fefefe</color>
+    <color name="txt_red">#e94391</color>
+    <color name="black_c1">#c1c1c1</color>
+    <color name="black_c4">#c4c4c4</color>
 </resources>

@@ -21,6 +21,7 @@ import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.entity.Account;
 import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.ui.WebViewActivity;
+import com.sunday.tianshehuoji.ui.fyy.AddressListActivity;
 import com.sunday.tianshehuoji.ui.manage.ActivityUserInfo;
 import com.sunday.tianshehuoji.ui.manage.AddAccountActivity;
 import com.sunday.tianshehuoji.ui.manage.ApplyCashActivity;
@@ -223,6 +224,12 @@ public class ManageFragment extends BaseFragment {
     @OnClick(R.id.menu6)
     void menu6() {
         intent = new Intent(mContext, SettingActivity.class);
+        startActivity(intent);
+    }
+    //收货地址
+    @OnClick(R.id.menu7)
+    void menu7() {
+        intent = new Intent(mContext, AddressListActivity.class);
         startActivity(intent);
     }
 

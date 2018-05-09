@@ -1,5 +1,6 @@
 package com.sunday.common.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -9,6 +10,7 @@ import android.media.ExifInterface;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,6 +20,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+
+import static com.sunday.common.utils.ImgUtils.scanPhoto;
 
 /**
  * Created by Administrator on 2015/7/22.
@@ -68,7 +72,30 @@ public class ImageUtils {
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
     }
 
+    /**
+     * 写图片文件到SD卡
+     *
+     * @throws IOException
+     */
+    public static void saveImageToSD(Context ctx, String filePath,
+                                     Bitmap bitmap, int quality) throws IOException {
+        if (bitmap != null) {
+            File file = new File(filePath.substring(0,
+                    filePath.lastIndexOf(File.separator)));
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            BufferedOutputStream bos = new BufferedOutputStream(
+                    new FileOutputStream(filePath));
+            bitmap.compress(Bitmap.CompressFormat.PNG, quality, bos);
+            bos.flush();
+            bos.close();
 
+            if (ctx != null) {
+                scanPhoto(ctx, filePath);
+            }
+        }
+    }
     private static Bitmap compressImage(Bitmap image) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中

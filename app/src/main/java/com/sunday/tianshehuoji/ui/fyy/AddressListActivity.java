@@ -43,7 +43,7 @@ public class AddressListActivity extends BaseActivity {
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private long memberId;
+    private Integer memberId;
     private List<Address> dataSet=new ArrayList<>();
     private AddressListAdapter adapter;
     private boolean isSelectMode;
@@ -57,7 +57,7 @@ public class AddressListActivity extends BaseActivity {
     }
 
     private void initView(){
-        memberId= Long.parseLong(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,"0"));
+        memberId= Integer.parseInt(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,"0"));
         isSelectMode=getIntent().getBooleanExtra("isSelectMode",false);
         titleView.setText("我的收货地址");
         rightTxt.setVisibility(View.GONE);
@@ -121,7 +121,7 @@ public class AddressListActivity extends BaseActivity {
 
     private void delAddr(Address address,final int p){
         showLoadingDialog(0);
-        Call<ResultDO> call=AppClient.getAppAdapter().delAddr(address.getId());
+        Call<ResultDO> call=AppClient.getAppAdapter().deleteAddress(address.getId());
         call.enqueue(new Callback<ResultDO>() {
             @Override
             public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
@@ -147,7 +147,7 @@ public class AddressListActivity extends BaseActivity {
 
     private void setDefaultAddr(Address address,final int p){
         showLoadingDialog(0);
-        Call<ResultDO> call= AppClient.getAppAdapter().setAddrDefault(memberId,address.getId());
+        Call<ResultDO> call= AppClient.getAppAdapter().setDefault(memberId,address.getId());
         call.enqueue(new Callback<ResultDO>() {
             @Override
             public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
@@ -184,7 +184,7 @@ public class AddressListActivity extends BaseActivity {
 
     private void getData(){
         showLoadingDialog(0);
-        Call<ResultDO<List<Address>>> call= AppClient.getAppAdapter().getAddrList(memberId);
+        Call<ResultDO<List<Address>>> call= AppClient.getAppAdapter().addressList(memberId);
         call.enqueue(new Callback<ResultDO<List<Address>>>() {
             @Override
             public void onResponse(Call<ResultDO<List<Address>>> call, Response<ResultDO<List<Address>>> response) {

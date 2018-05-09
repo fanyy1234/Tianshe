@@ -54,7 +54,7 @@ public class AddAddressActivity extends BaseActivity {
 
     private Integer provinceId,cityId,districtId,addressId=null;
 
-    private long memberId;
+    private Integer memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +67,13 @@ public class AddAddressActivity extends BaseActivity {
     }
 
     private void initView() {
-        memberId= Long.parseLong(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,""));
+        memberId= Integer.parseInt(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,""));
         Address address = (Address) getIntent().getSerializableExtra("address");
         if (address ==null) {
             titleView.setText("添加地址");
         } else {
             titleView.setText("编辑地址");
             tvName.setText(address.getName());
-            tvPlace.setText(address.getCityDetail());
             tvPhone.setText(address.getMobile());
             tvFinalAddress.setText(address.getAddress());
             provinceId= address.getProvinceId();
@@ -167,8 +166,8 @@ public class AddAddressActivity extends BaseActivity {
             return;
         }
         showLoadingDialog(0);
-        Call<ResultDO> call=AppClient.getAppAdapter().saveAddr(memberId,provinceId,cityId,districtId,userName
-        ,mobileNo,addrDetail,addr,addressId);
+        Call<ResultDO> call=AppClient.getAppAdapter().saveAddress(memberId,userName
+        ,mobileNo,addrDetail,addressId);
         call.enqueue(new Callback<ResultDO>() {
             @Override
             public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {

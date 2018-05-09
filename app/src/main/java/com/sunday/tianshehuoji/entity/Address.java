@@ -34,9 +34,8 @@ public class Address implements Serializable {
     private String name;
     private String mobile;
     private String address;
-    private String cityDetail;
     private int isDeleted;
-
+    private String cityDetail;
     public int getId() {
         return id;
     }

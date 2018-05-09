@@ -27,6 +27,7 @@ import com.sunday.tianshehuoji.entity.order.OrderConfirm;
 import com.sunday.tianshehuoji.entity.order.OrderDetail;
 import com.sunday.tianshehuoji.entity.order.OrderTotal;
 import com.sunday.tianshehuoji.entity.shop.IndexShop;
+import com.sunday.tianshehuoji.entity.shop.MemberSize;
 import com.sunday.tianshehuoji.entity.shop.Seller;
 import com.sunday.tianshehuoji.entity.shop.ShopDetail;
 
@@ -427,6 +428,7 @@ public interface AppService {
 
     /**
      * 增加或修改收货信息
+     * addressId修改时传
      */
     @FormUrlEncoded
     @POST("/mobile/address/saveAddress")
@@ -434,7 +436,7 @@ public interface AppService {
                                @Field("name")String name,
                                @Field("mobile")String mobile,
                                @Field("address")String address,
-                               @Field("addressId")int addressId);
+                               @Field("addressId")Integer addressId);
 
     /**
      * 删除收货信息
@@ -459,7 +461,7 @@ public interface AppService {
      */
     @FormUrlEncoded
     @POST("/mobile/address/addressList")
-    Call<ResultDO> addressList(@Field("memberId")int memberId);
+    Call<ResultDO<List<Address>>> addressList(@Field("memberId")int memberId);
 
     /**
      * 添加用户身体尺寸
@@ -478,7 +480,7 @@ public interface AppService {
      * 获取用户身体尺寸list
      */
     @GET("/mobile/memberSize/list")
-    Call<ResultDO> sizeList(@Query("memberId") int id);
+    Call<ResultDO<List<MemberSize>>> sizeList(@Query("memberId") int id);
     /**
      * 删除用户身体尺寸
      */
@@ -504,22 +506,6 @@ public interface AppService {
     @FormUrlEncoded
     @POST("/mobi/cart/AhGetDistricts")
     Call<ResultDO<List<City>>> getDistricts(@Field("cityId") Integer cityId);
-    /**
-     * 新增或修改地址列表
-     */
-    @FormUrlEncoded
-    @POST("/mobi/cart/AfSaveAddress")
-    Call<ResultDO> saveAddr(@Field("memberId") long memberId, @Field("provinceId") int provinceId,
-                            @Field("cityId") int cityId, @Field("districtId") int districtId,
-                            @Field("name") String name, @Field("mobile") String mobile,
-                            @Field("address") String address, @Field("cityDetail") String cityDetail,
-                            @Field("addressId") Integer addressId);
-    /**
-     * 删除收货地址
-     */
-    @FormUrlEncoded
-    @POST("/mobi/cart/AgDeleteAddress")
-    Call<ResultDO> delAddr(@Field("addressId") int addressId);
 
     /**
      * 获取默认收货地址
@@ -527,17 +513,5 @@ public interface AppService {
     @FormUrlEncoded
     @POST("/mobi/cart/AgGetDefault")
     Call<ResultDO<Address>> getDefaultAddr(@Field("memberId") long memberId);
-    /**
-     * 地址列表
-     */
-    @FormUrlEncoded
-    @POST("/mobi/cart/AgAddressList")
-    Call<ResultDO<List<Address>>> getAddrList(@Field("memberId") long memberId);
 
-    /**
-     * 设置默认地址
-     */
-    @FormUrlEncoded
-    @POST("/mobi/cart/AgSetDefault")
-    Call<ResultDO> setAddrDefault(@Field("memberId") long memberId, @Field("addressId") int addressId);
 }

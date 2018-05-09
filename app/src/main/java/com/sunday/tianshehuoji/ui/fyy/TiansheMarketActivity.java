@@ -60,8 +60,8 @@ public class TiansheMarketActivity extends BaseActivity implements View.OnClickL
     LinearLayout tiansheMyinfo;
     private int selectColor, unselectColor;
     private TsMarketFragment marketFragment = new TsMarketFragment();
-    private TsCartFragment cartFragment = new TsCartFragment();
-    private TsMyinfoFragment myinfoFragment = new TsMyinfoFragment();
+//    private TsCartFragment cartFragment = new TsCartFragment();
+//    private TsMyinfoFragment myinfoFragment = new TsMyinfoFragment();
     private Fragment[] fragments;
     private int currentIndex = 0;
     private int oldIndex;
@@ -87,23 +87,23 @@ public class TiansheMarketActivity extends BaseActivity implements View.OnClickL
         tiansheMyinfo.setOnClickListener(this);
 
         marketFragment.setArguments(bundle);
-        cartFragment.setArguments(bundle);
-        myinfoFragment.setArguments(bundle);
-        fragments = new Fragment[]{marketFragment,cartFragment,myinfoFragment};
+//        cartFragment.setArguments(bundle);
+//        myinfoFragment.setArguments(bundle);
+//        fragments = new Fragment[]{marketFragment,cartFragment,myinfoFragment};
         FragmentTransaction ftr = getSupportFragmentManager().beginTransaction();
         ftr.add(R.id.fragment_container, marketFragment);
         ftr.show(marketFragment).commit();
     }
 
     private void changeFragment() {
-        if (oldIndex != currentIndex) {
-            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-            trx.hide(fragments[oldIndex]);
-            if (!fragments[currentIndex].isAdded()) {
-                trx.add(R.id.fragment_container, fragments[currentIndex]);
-            }
-            trx.show(fragments[currentIndex]).commit();
-        }
+//        if (oldIndex != currentIndex) {
+//            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+//            trx.hide(fragments[oldIndex]);
+//            if (!fragments[currentIndex].isAdded()) {
+//                trx.add(R.id.fragment_container, fragments[currentIndex]);
+//            }
+//            trx.show(fragments[currentIndex]).commit();
+//        }
     }
 
     @Override
