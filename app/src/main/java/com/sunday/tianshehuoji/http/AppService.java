@@ -455,7 +455,7 @@ public interface AppService {
      */
     @FormUrlEncoded
     @POST("/mobile/address/getDefault")
-    Call<ResultDO> getDefault(@Field("memberId")int memberId);
+    Call<ResultDO<Address>> getDefault(@Field("memberId")int memberId);
     /**
      * 获取收货人列表
      */

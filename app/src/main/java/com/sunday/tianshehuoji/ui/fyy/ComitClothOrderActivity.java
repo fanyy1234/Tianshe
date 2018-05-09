@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sunday.common.model.ResultDO;
 import com.sunday.common.utils.Constants;
+import com.sunday.common.utils.ToastUtils;
 import com.sunday.common.widgets.ClearEditText;
 import com.sunday.member.base.BaseActivity;
 import com.sunday.member.utils.SharePerferenceUtils;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.MultiTypeAdapter;
 import com.sunday.tianshehuoji.entity.Address;
+import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.model.SubmitOrderProduct;
 import com.sunday.tianshehuoji.model.Visitable;
 
@@ -23,6 +26,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by fyy on 2018/4/12.
@@ -33,7 +39,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
     LinearLayoutManager layoutManager;
     MultiTypeAdapter adapter;
 
-    String memberId;
+    private Integer memberId;
     @Bind(R.id.title_view)
     TextView titleView;
     @Bind(R.id.cloth_list)
@@ -79,15 +85,16 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
     @Bind(R.id.btn_buy)
     TextView btnBuy;
 
-
+    private Address address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothing_ordercommit);
         ButterKnife.bind(this);
         titleView.setText("提交订单");
-        memberId = SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID, "");
+        memberId = Integer.valueOf(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID, ""));
         initView();
+        getDefaultAddr();
     }
 
     private void initView() {
@@ -108,17 +115,20 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         selectUser.setOnClickListener(this);
         xuanze.setOnClickListener(this);
         btnBuy.setOnClickListener(this);
+        addressInfo.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v){
         switch (v.getId()){
-            case R.id.select_user://选择收货人
+            case R.id.address_info://选择收货人
                 Intent intent1 = new Intent(this,AddressListActivity.class);
+                intent.putExtra("isSelectMode", true);
                 startActivityForResult(intent1,1);
                 break;
             case R.id.xuanze://选择尺寸
                 Intent intent2 = new Intent(this,SelectMemberSizeActivity.class);
+                intent.putExtra("isSelectMode", true);
                 startActivityForResult(intent2,2);
                 break;
             case R.id.btn_buy:
@@ -150,6 +160,37 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    private void getDefaultAddr() {
+        showLoadingDialog(0);
+        Call<ResultDO<Address>> call = AppClient.getAppAdapter().getDefault(memberId);
+        call.enqueue(new Callback<ResultDO<Address>>() {
+            @Override
+            public void onResponse(Call<ResultDO<Address>> call, Response<ResultDO<Address>> response) {
+                if (isFinish) {
+                    return;
+                }
+                dissMissDialog();
+                ResultDO<Address> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    address = resultDO.getResult();
+                    setAddr(address);
+                } else {
+                    ToastUtils.showToast(mContext, resultDO.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<Address>> call, Throwable t) {
+                dissMissDialog();
+                ToastUtils.showToast(mContext, R.string.network_error);
+            }
+        });
+
+    }
+
     private void setAddr(Address address) {
         if (address == null) {
             userName.setText("暂无收货地址");
@@ -158,7 +199,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         } else {
             userName.setText("姓名:" + address.getName());
             userMobile.setText(address.getMobile());
-            userAddr.setText(String.format("收货地址:%1s%2s", address.getCityDetail(), address.getAddress()));
+            userAddr.setText(String.format("收货地址:%1s", address.getAddress()));
 
         }
     }
