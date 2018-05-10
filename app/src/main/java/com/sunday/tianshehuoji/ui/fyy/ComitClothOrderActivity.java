@@ -17,6 +17,7 @@ import com.sunday.member.utils.SharePerferenceUtils;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.MultiTypeAdapter;
 import com.sunday.tianshehuoji.entity.Address;
+import com.sunday.tianshehuoji.entity.shop.MemberSize;
 import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.model.SubmitOrderProduct;
 import com.sunday.tianshehuoji.model.Visitable;
@@ -123,12 +124,12 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         switch (v.getId()){
             case R.id.address_info://选择收货人
                 Intent intent1 = new Intent(this,AddressListActivity.class);
-                intent.putExtra("isSelectMode", true);
+                intent1.putExtra("isSelectMode", true);
                 startActivityForResult(intent1,1);
                 break;
             case R.id.xuanze://选择尺寸
                 Intent intent2 = new Intent(this,SelectMemberSizeActivity.class);
-                intent.putExtra("isSelectMode", true);
+                intent2.putExtra("isSelectMode", true);
                 startActivityForResult(intent2,2);
                 break;
             case R.id.btn_buy:
@@ -148,15 +149,14 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
             return;
         }
         switch (requestCode) {
-            case REQUEST_ADDR:
+            case 1:
                 Address address = (Address) data.getSerializableExtra("address");
                 setAddr(address);
                 break;
-//            case REQUEST_COUNPON:
-//                voucherId = data.getIntExtra("id", 0);
-//                couponMoney = data.getDoubleExtra("money", 0);
-//                reCountTotalMoney();
-//                break;
+            case 2:
+                MemberSize memberSize = (MemberSize) data.getSerializableExtra("address");
+                setMemberSize(memberSize);
+                break;
         }
     }
 
@@ -200,7 +200,17 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
             userName.setText("姓名:" + address.getName());
             userMobile.setText(address.getMobile());
             userAddr.setText(String.format("收货地址:%1s", address.getAddress()));
-
+        }
+    }
+    private void setMemberSize(MemberSize memberSize) {
+        if (memberSize != null) {
+            bodyName.setText(memberSize.getName());
+            bodyXiongwei.setText(memberSize.getXiongwei());
+            bodyYaowei.setText(memberSize.getYaowei());
+            bodyTunwei.setText(memberSize.getTunwei());
+            bodyYichang.setText(memberSize.getYichang());
+            bodyJiankuan.setText(memberSize.getJiankuan());
+            bodyXiuchang.setText(memberSize.getXiuchang());
         }
     }
 }

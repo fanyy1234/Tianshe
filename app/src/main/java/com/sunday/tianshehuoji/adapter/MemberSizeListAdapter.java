@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -46,13 +47,17 @@ public class MemberSizeListAdapter extends RecyclerView.Adapter {
         ListHolder listHolder= (ListHolder) holder;
         MemberSize item=dataSet.get(position);
         listHolder.name.setText(item.getName());
-//        listHolder.phoneNumber.setText(item.getMobile());
-//        listHolder.address.setText(String.format("%1s %2s",item.getCityDetail(),item.getAddress()));
-        if (item.isDeleted()){
-            listHolder.choice.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.addr_select,0,0,0);
-        }else{
-            listHolder.choice.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_select_no,0,0,0);
-        }
+        listHolder.xiongwei.setText(item.getXiongwei());
+        listHolder.yaowei.setText(item.getYaowei());
+        listHolder.tunwei.setText(item.getTunwei());
+        listHolder.yichang.setText(item.getYichang());
+        listHolder.jiankuan.setText(item.getJiankuan());
+        listHolder.xiuchang.setText(item.getXiuchang());
+//        if (item.isDeleted()){
+//            listHolder.choice.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.addr_select,0,0,0);
+//        }else{
+//            listHolder.choice.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_select_no,0,0,0);
+//        }
 
         listHolder.edite.setOnClickListener(onClickListener);
         listHolder.delete.setOnClickListener(onClickListener);
@@ -78,16 +83,28 @@ public class MemberSizeListAdapter extends RecyclerView.Adapter {
 
         @Bind(R.id.name)
         TextView name;
+        @Bind(R.id.xiongwei)
+        TextView xiongwei;
+        @Bind(R.id.yaowei)
+        TextView yaowei;
+        @Bind(R.id.tunwei)
+        TextView tunwei;
+        @Bind(R.id.yichang)
+        TextView yichang;
+        @Bind(R.id.jiankuan)
+        TextView jiankuan;
+        @Bind(R.id.xiuchang)
+        TextView xiuchang;
         @Bind(R.id.address_layout)
-        RelativeLayout addressLayout;
+        LinearLayout addressLayout;
         @Bind(R.id.choice)
         TextView choice;
         @Bind(R.id.edite)
         TextView edite;
         @Bind(R.id.delete)
         TextView delete;
-        @Bind(R.id.default_layout)
-        RelativeLayout defaultLayout;
+//        @Bind(R.id.default_layout)
+//        RelativeLayout defaultLayout;
         public ListHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

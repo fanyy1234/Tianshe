@@ -4,7 +4,210 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/common_header"/>
+    <include layout="@layout/layout_common_header"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="姓名"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_6"/>
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/name"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="#50000000"
+            android:textSize="15sp"
+            android:textColor="@color/black_3"
+            android:hint="请填写姓名"
+            android:background="@null"
+            android:inputType="text" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="1dp"
+        android:paddingRight="16dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="胸围"
+            android:textColor="@color/black_6" />
+
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/xiongwei"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_3"
+            android:textColorHint="#50000000"
+            android:hint="请填写胸围"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="腰围"
+            android:layout_width="70dp"
+            android:textColor="@color/black_6"
+            android:layout_height="wrap_content" />
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/yaowei"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:textColorHint="#50000000"
+            android:hint="请填写腰围"
+            android:textColor="@color/black_3"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="臀围"
+            android:layout_width="70dp"
+            android:textColor="@color/black_6"
+            android:layout_height="wrap_content" />
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/tunwei"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:textColorHint="#50000000"
+            android:hint="请填写臀围"
+            android:textColor="@color/black_3"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="衣长"
+            android:layout_width="70dp"
+            android:textColor="@color/black_6"
+            android:layout_height="wrap_content" />
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/yichang"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:textColorHint="#50000000"
+            android:hint="请填写衣长"
+            android:textColor="@color/black_3"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="肩宽"
+            android:layout_width="70dp"
+            android:textColor="@color/black_6"
+            android:layout_height="wrap_content" />
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/jiankuan"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:textColorHint="#50000000"
+            android:hint="请填写肩宽"
+            android:textColor="@color/black_3"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="袖长"
+            android:layout_width="70dp"
+            android:textColor="@color/black_6"
+            android:layout_height="wrap_content" />
+        <com.sunday.common.widgets.ClearEditText
+            android:id="@+id/xiuchang"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:textColorHint="#50000000"
+            android:hint="请填写袖长"
+            android:textColor="@color/black_3"
+            android:textSize="15sp"
+            android:background="@null"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -188,8 +188,6 @@ public class AddAddressActivity extends BaseActivity {
                 ToastUtils.showToast(mContext,R.string.network_error);
             }
         });
-
-
     }
 
 

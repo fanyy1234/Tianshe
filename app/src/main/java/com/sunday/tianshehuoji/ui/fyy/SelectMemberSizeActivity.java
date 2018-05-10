@@ -82,9 +82,9 @@ public class SelectMemberSizeActivity extends BaseActivity {
                     case R.id.edite:
                         int p= (int) v.getTag();
                         MemberSize memberSize=dataSet.get(p);
-//                        intent=new Intent(mContext,AddAddressActivity.class);
-//                        intent.putExtra("address",memberSize);
-//                        startActivity(intent);
+                        intent=new Intent(mContext,AddMemberSizeActivity.class);
+                        intent.putExtra("address",memberSize);
+                        startActivity(intent);
                         break;
                     case R.id.delete:
                         final int p2= (int) v.getTag();

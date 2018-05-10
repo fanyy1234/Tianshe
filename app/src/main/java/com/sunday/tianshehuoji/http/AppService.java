@@ -477,6 +477,19 @@ public interface AppService {
                            @Field("tunwe")String tunwe,
                            @Field("xiuchang")String xiuchang);
     /**
+     * 更新用户身体尺寸
+     */
+    @FormUrlEncoded
+    @POST("/mobile/memberSize/updateSize")
+    Call<ResultDO> updateSize(@Field("id")int id,
+                           @Field("name")String name,
+                           @Field("yichang")String yichang,
+                           @Field("jiankuan")String jiankuan,
+                           @Field("xiongwei")String xiongwei,
+                           @Field("yaowei")String yaowei,
+                           @Field("tunwe")String tunwe,
+                           @Field("xiuchang")String xiuchang);
+    /**
      * 获取用户身体尺寸list
      */
     @GET("/mobile/memberSize/list")
