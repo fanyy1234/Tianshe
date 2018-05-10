@@ -87,6 +87,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
     TextView btnBuy;
 
     private Address address;
+    private MemberSize memberSize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +134,14 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
                 startActivityForResult(intent2,2);
                 break;
             case R.id.btn_buy:
-
+                if (address==null){
+                    ToastUtils.showToast(mContext,"请选择收货地址");
+                    return;
+                }
+                if (memberSize==null){
+                    ToastUtils.showToast(mContext,"请选择人员量体信息");
+                    return;
+                }
                 break;
             default:
                 break;
@@ -150,11 +158,11 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         }
         switch (requestCode) {
             case 1:
-                Address address = (Address) data.getSerializableExtra("address");
+                address = (Address) data.getSerializableExtra("address");
                 setAddr(address);
                 break;
             case 2:
-                MemberSize memberSize = (MemberSize) data.getSerializableExtra("address");
+                memberSize = (MemberSize) data.getSerializableExtra("address");
                 setMemberSize(memberSize);
                 break;
         }

@@ -36,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static u.aly.av.C;
+//import static u.aly.av.C;
 
 /**
  * Created by 刘涛 on 2016/12/20.

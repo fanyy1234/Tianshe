@@ -394,6 +394,8 @@ public class ProductDetailActivity extends BaseActivity {
 //
 //                specWindow.setBuyType(Constant.TYPE_ADDCART);
 //                specWindow.showPopupWindow(addCart);
+                intent = new Intent(mContext, ComitOrderActivity.class);
+                startActivity(intent);
                 break;
             case R.id.buy_now:
 //                if (specWindow == null) {
@@ -401,11 +403,11 @@ public class ProductDetailActivity extends BaseActivity {
 //                }
 //                specWindow.setBuyType(Constant.TYPE_BUY_NOW);
 //                specWindow.showPopupWindow(buyNow);
+                intent = new Intent(mContext, ComitClothOrderActivity.class);
+                startActivity(intent);
                 break;
             case R.id.img_cart:
-//                intent = new Intent(mContext, CartActivity.class);
-//                startActivity(intent);
-                intent = new Intent(mContext, ComitClothOrderActivity.class);
+                intent = new Intent(mContext, CartActivity.class);
                 startActivity(intent);
                 break;
             case R.id.product_store_num:

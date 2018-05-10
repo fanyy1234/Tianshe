@@ -25,7 +25,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-import static u.aly.av.I;
+//import static u.aly.av.I;
 
 /**
  * Created by 刘涛 on 2016/12/13.

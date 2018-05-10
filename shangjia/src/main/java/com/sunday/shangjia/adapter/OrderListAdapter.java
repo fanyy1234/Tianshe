@@ -86,12 +86,23 @@ public class OrderListAdapter extends RecyclerView.Adapter {
             viewHolder.txt1.setText(String.format("美容师:%s", item.getChooseWaiterName()));
         } else if (item.getShopType().equals(Const.TYPE2) || item.getShopType().equals(Const.TYPE3)
                 || item.getShopType().equals(Const.TYPE7) || item.getShopType().equals(Const.TYPE11)) {
-            viewHolder.txt1.setText(String.format("入住时间:%s", DateUtils.dateToStr1(DateUtils.strToDate(item.getStartTime()))));
-            viewHolder.txt2.setText(String.format("离店时间:%s", DateUtils.dateToStr1(DateUtils.strToDate(item.getEndTime()))));
+            if (item.getStartTime()==null){
+                viewHolder.txt2.setText(String.format("入住时间:%s", ""));
+            }else {
+                viewHolder.txt1.setText(String.format("入住时间:%s", DateUtils.dateToStr1(DateUtils.strToDate(item.getStartTime()))));
+            }
+            if (item.getEndTime()==null){
+                viewHolder.txt2.setText(String.format("离店时间:%s", ""));
+            }else {
+                viewHolder.txt2.setText(String.format("离店时间:%s", DateUtils.dateToStr1(DateUtils.strToDate(item.getEndTime()))));
+            }
+
         } else {
             viewHolder.txt1.setVisibility(View.GONE);
             viewHolder.txt2.setVisibility(View.GONE);
         }
+        viewHolder.txt1.setVisibility(View.GONE);
+        viewHolder.txt2.setVisibility(View.GONE);
         viewHolder.txt3.setText(DateUtils.dateToStr1(DateUtils.strToDate(item.getPayTime())));
 
         if (item.getOrderIteam() != null && item.getOrderIteam().size() > 0) {

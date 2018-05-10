@@ -2,7 +2,7 @@ package com.sunday.shangjia.entity;
 
 import java.util.List;
 
-import static u.aly.av.B;
+//import static u.aly.av.B;
 
 /**
  * Created by 刘涛 on 2016/12/28.
