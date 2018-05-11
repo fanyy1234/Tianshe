@@ -29,6 +29,6 @@ public class SubmitOrderProductViewHolder extends BaseViewHolder<SubmitOrderProd
         guige.setText(model.getGuige());
         num.setText("x "+model.getNum()+"");
         price.setText(model.getPrice());
-        Picasso.with(adapter.getmContext()).load(model.getImg()).into(img);
+        Picasso.with(adapter.getmContext()).load(model.getImg()).error(R.mipmap.default_img).into(img);
     }
 }

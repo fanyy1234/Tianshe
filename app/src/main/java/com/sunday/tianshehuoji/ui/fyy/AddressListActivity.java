@@ -56,7 +56,7 @@ public class AddressListActivity extends BaseActivity {
         getData();
     }
 
-    private void initView(){
+    private void initView(){//443
         memberId= Integer.parseInt(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,"0"));
         isSelectMode=getIntent().getBooleanExtra("isSelectMode",false);
         titleView.setText("我的收货地址");

@@ -310,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/appcolor"
-                android:text="￥610"/>
+                android:text=""/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -333,6 +333,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:visibility="gone"
             android:padding="10dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -393,7 +394,8 @@
     <TextView
         android:id="@+id/goods_num"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="1"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

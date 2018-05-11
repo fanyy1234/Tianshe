@@ -75,9 +75,10 @@ public class TsProductFragment extends BaseFragment {
             for (int i = 0;i<length;i++){
                 JSONObject productObject = array.getJSONObject(i);
                 TiansheProduct product = new TiansheProduct();
-                product.setName("name"+i);
-                product.setNewPrice("￥250");
-                product.setOldPrice("￥256");
+                product.setName(productObject.getString("name"));
+                product.setNewPrice(productObject.getInteger("price").toString());
+                product.setId(productObject.getInteger("id"));
+                product.setImg("000");
                 models.add(product);
             }
         }
@@ -85,9 +86,10 @@ public class TsProductFragment extends BaseFragment {
             for (int i = 0;i<length;i++){
                 JSONObject productObject = array.getJSONObject(i);
                 ClothProduct product = new ClothProduct();
-                product.setName("name"+i);
-                product.setNewPrice("￥250");
-                product.setOldPrice("￥256");
+                product.setName(productObject.getString("name"));
+                product.setNewPrice(productObject.getInteger("price").toString());
+                product.setId(productObject.getInteger("id"));
+                product.setImg("000");
                 models.add(product);
             }
         }

@@ -61,6 +61,9 @@ public class BuyOrderActivity extends BaseActivity {
     private IWXAPI api;
 
     private String cartId,linkPhone,linkName,desc;
+
+    private Integer sizeId = null;
+    private Integer addressId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,14 @@ public class BuyOrderActivity extends BaseActivity {
     }
 
     private void initView() {
+        addressId = getIntent().getIntExtra("addressId",0);
+        sizeId = getIntent().getIntExtra("sizeId",0);
+        if (addressId==0){
+            addressId = null;
+        }
+        if (sizeId==0){
+            sizeId = null;
+        }
         api = WXAPIFactory.createWXAPI(this, com.sunday.tianshehuoji.wxapi.Constants.APP_ID);
         api.registerApp(com.sunday.tianshehuoji.wxapi.Constants.APP_ID);
         buyOrderActivity = this;
@@ -119,7 +130,7 @@ public class BuyOrderActivity extends BaseActivity {
 
     private void recharge(){
         showLoadingDialog(0);
-        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.valueOf(cartId), linkPhone, linkName, desc,payType);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.valueOf(cartId), linkPhone, linkName, desc,payType,addressId,sizeId);
         call.enqueue(new Callback<ResultDO<String>>() {
             @Override
             public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {
@@ -159,7 +170,7 @@ public class BuyOrderActivity extends BaseActivity {
     }
     private void rechargeWx(){
         showLoadingDialog(0);
-        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.valueOf(cartId), linkPhone, linkName, desc,payType);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.valueOf(cartId), linkPhone, linkName, desc,payType,addressId,sizeId);
         call.enqueue(new Callback<ResultDO<String>>() {
             @Override
             public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {

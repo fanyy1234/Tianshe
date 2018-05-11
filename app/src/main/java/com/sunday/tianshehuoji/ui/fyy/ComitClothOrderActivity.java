@@ -12,16 +12,29 @@ import com.sunday.common.model.ResultDO;
 import com.sunday.common.utils.Constants;
 import com.sunday.common.utils.ToastUtils;
 import com.sunday.common.widgets.ClearEditText;
+import com.sunday.common.widgets.UIAlertView;
 import com.sunday.member.base.BaseActivity;
 import com.sunday.member.utils.SharePerferenceUtils;
+import com.sunday.tianshehuoji.BaseApplication;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.MultiTypeAdapter;
 import com.sunday.tianshehuoji.entity.Address;
+import com.sunday.tianshehuoji.entity.order.OrderConfirm;
 import com.sunday.tianshehuoji.entity.shop.MemberSize;
 import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.model.SubmitOrderProduct;
+import com.sunday.tianshehuoji.model.TiansheMarket;
 import com.sunday.tianshehuoji.model.Visitable;
+import com.sunday.tianshehuoji.ui.product.BuyOrderActivity;
+import com.sunday.tianshehuoji.ui.product.ConfirmBuyActivity;
+import com.sunday.tianshehuoji.utils.EntityUtil;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +101,12 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
 
     private Address address;
     private MemberSize memberSize;
+
+    private Integer productId;
+    private String shopId,shopType;
+    private BigDecimal balance;
+    private OrderConfirm orderConfirm;
+    private String desc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +114,8 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         ButterKnife.bind(this);
         titleView.setText("提交订单");
         memberId = Integer.valueOf(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID, ""));
+        shopId = TiansheMarketActivity.shopId;
+        shopType = TiansheMarketActivity.shopType;
         initView();
         getDefaultAddr();
     }
@@ -104,14 +125,16 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         layoutManager = new LinearLayoutManager(this);
         clothList.setLayoutManager(layoutManager);
         clothList.setAdapter(adapter);
-        for (int i = 0; i < 3; i++) {
-            SubmitOrderProduct product = new SubmitOrderProduct();
-            product.setName("男士衬衫sssssssssssssssssssssssssssssss" + i);
-            product.setNum(1);
-            product.setGuige("白色Lssssssssssssss");
-            product.setPrice("￥610");
-            models.add(product);
-        }
+        productId = getIntent().getIntExtra("id",0);
+        SubmitOrderProduct product = new SubmitOrderProduct();
+        product.setName(getIntent().getStringExtra("name"));
+        product.setNum(1);
+        product.setGuige("白色规格");
+        product.setPrice("￥"+getIntent().getStringExtra("price"));
+        product.setImg(getIntent().getStringExtra("img"));
+        models.add(product);
+        finalMoney.setText("￥"+getIntent().getStringExtra("price"));
+        goodsSum.setText("￥"+getIntent().getStringExtra("price"));
         adapter.notifyDataSetChanged();
 
         selectUser.setOnClickListener(this);
@@ -142,6 +165,8 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
                     ToastUtils.showToast(mContext,"请选择人员量体信息");
                     return;
                 }
+                desc = orderRemark.getText().toString().trim();
+                orderConfirm();
                 break;
             default:
                 break;
@@ -220,5 +245,105 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
             bodyJiankuan.setText(memberSize.getJiankuan());
             bodyXiuchang.setText(memberSize.getXiuchang());
         }
+    }
+
+    private String getJson() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject();
+            jsonObject.put("productId", productId);
+            jsonObject.put("num", 1);
+            jsonArray.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonArray.toString();
+    }
+
+    private void orderConfirm() {
+        Call<ResultDO<OrderConfirm>> call = AppClient.getAppAdapter().OrderConfirm(memberId.toString(), shopId, null, null, null, null,
+                null, shopType, getJson());
+        call.enqueue(new Callback<ResultDO<OrderConfirm>>() {
+            @Override
+            public void onResponse(Call<ResultDO<OrderConfirm>> call, Response<ResultDO<OrderConfirm>> response) {
+                ResultDO<OrderConfirm> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    orderConfirm = resultDO.getResult();
+                    balance = orderConfirm.getCanUseMoney();
+                    showPayWindow();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<OrderConfirm>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void showPayWindow() {
+        if (balance == null) {
+            return;
+        }
+        final UIAlertView view = new UIAlertView(mContext, "确认支付", String.format("当前可用余额:%s", balance.setScale(2, RoundingMode.HALF_UP)),
+                "取消", "确定");
+        view.show();
+        view.setClicklistener(new UIAlertView.ClickListenerInterface() {
+            @Override
+            public void doLeft() {
+                view.dismiss();
+            }
+
+            @Override
+            public void doRight() {
+                view.dismiss();
+                if (balance.compareTo(orderConfirm.getRealMoney())>=0){
+                    buyWithBalance();
+                }
+                else {
+                    Intent intent = new Intent(ComitClothOrderActivity.this,BuyOrderActivity.class);
+                    intent.putExtra("cartId",orderConfirm.getId());
+                    intent.putExtra("linkPhone",address.getMobile());
+                    intent.putExtra("linkName",address.getName());
+                    intent.putExtra("desc",desc);
+                    intent.putExtra("addressId",Integer.valueOf(address.getId()));
+                    intent.putExtra("sizeId",Integer.valueOf(memberSize.getId()));
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+    private void buyWithBalance(){
+        showLoadingDialog(0);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.parseInt(orderConfirm.getId()), address.getMobile(), address.getName(), desc,null,null,null);
+        call.enqueue(new Callback<ResultDO<String>>() {
+            @Override
+            public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {
+                if (response.body() == null) {
+                    dissMissDialog();
+                    return;
+                }
+                com.alibaba.fastjson.JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
+
+                if (response.body().getCode()==0){
+                    ToastUtils.showToast(mContext, "支付成功");
+                    BaseApplication.getInstance().setConsumed(true);//余额变动
+                    finish();
+                }
+                else {
+                    dissMissDialog();
+                    ToastUtils.showToast(mContext, response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<String>> call, Throwable t) {
+                dissMissDialog();
+            }
+        });
     }
 }

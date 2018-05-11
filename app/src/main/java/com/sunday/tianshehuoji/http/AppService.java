@@ -158,7 +158,8 @@ public interface AppService {
     @FormUrlEncoded
     @POST("/mobile/order/createOrder")
     Call<ResultDO<String>> createOrder(@Field("cartId") Integer cartId, @Field("linkMobile")String linkMobile,
-                                       @Field("linkName")String linkName,@Field("desc")String desc,@Field("type")Integer type);
+                                       @Field("linkName")String linkName,@Field("desc")String desc,@Field("type")Integer type,
+                                       @Field("addressId") Integer addressId,@Field("sizeId") Integer sizeId);
 
 
     /**
@@ -527,4 +528,13 @@ public interface AppService {
     @POST("/mobi/cart/AgGetDefault")
     Call<ResultDO<Address>> getDefaultAddr(@Field("memberId") long memberId);
 
+    /**
+     * 创建服装订单
+     */
+    @FormUrlEncoded
+    @POST("/mobile/order/createOrder")
+    Call<ResultDO<String>> createClothOrder(@Field("cartId") Integer cartId, @Field("linkMobile")String linkMobile,
+                                       @Field("linkName")String linkName,@Field("desc")String desc,
+                                       @Field("addressId")Integer addressId,@Field("sizeId")Integer sizeId,
+                                            @Field("type")Integer type);
 }

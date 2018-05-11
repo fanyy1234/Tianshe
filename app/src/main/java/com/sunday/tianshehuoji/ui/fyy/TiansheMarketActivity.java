@@ -65,7 +65,8 @@ public class TiansheMarketActivity extends BaseActivity implements View.OnClickL
     private Fragment[] fragments;
     private int currentIndex = 0;
     private int oldIndex;
-    private String shopId;
+    public static String shopId;
+    public static String shopType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class TiansheMarketActivity extends BaseActivity implements View.OnClickL
 
     private void initView() {
         shopId = getIntent().getStringExtra("shopId");
+        shopType = getIntent().getStringExtra("shopType");
         Bundle bundle = new Bundle();
         bundle.putString("shopId", shopId);
         selectColor = ContextCompat.getColor(this, R.color.appcolor);

@@ -24,20 +24,25 @@ public class ClothProductViewHolder extends BaseViewHolder<ClothProduct> {
     }
     @Override
     public void setUpView(final ClothProduct model, int position, final MultiTypeAdapter adapter) {
-        final TextView name = (TextView) getView(R.id.name);
-        final ImageView img = (ImageView) getView(R.id.img);
-        final TextView newPrice = (TextView) getView(R.id.new_price);
-        final TextView oldPrice = (TextView) getView(R.id.old_price);
-        final View rootView = getView(R.id.root_view);
-        name.setText(model.getName());
+        final ImageView img = (ImageView) getView(R.id.product_img);
+        final TextView newPrice = (TextView) getView(R.id.price_now);
+        final TextView oldPrice = (TextView) getView(R.id.price_old);
+        final TextView productTitle = (TextView) getView(R.id.product_title);
+        final View rootView = getView(R.id.total_layout);
+        productTitle.setText(model.getName());
         newPrice.setText(model.getNewPrice());
-        oldPrice.setText(model.getOldPrice());
-        oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
+
+//        oldPrice.setText(model.getOldPrice());
+//        oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
 //        Picasso.with(adapter.getmContext()).load(model.getImg()).into(img);
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(adapter.getmContext(), ClothingDetailActivity.class);
+                intent.putExtra("id",model.getId());
+                intent.putExtra("name",model.getName());
+                intent.putExtra("price",model.getNewPrice());
+                intent.putExtra("img",model.getImg());
                 adapter.getmContext().startActivity(intent);
             }
         });

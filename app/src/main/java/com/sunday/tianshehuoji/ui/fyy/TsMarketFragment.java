@@ -62,8 +62,7 @@ public class TsMarketFragment extends BaseFragment {
     }
 
     private void initView() {
-        shopId = "42";
-//        shopId = getArguments().getString("shopId");
+        shopId = getArguments().getString("shopId");
         getInfo();
     }
 

@@ -416,7 +416,7 @@ public class ConfirmBuyActivity extends BaseActivity {
 
     private void buyWithBalance(){
         showLoadingDialog(0);
-        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.parseInt(orderConfirm.getId()), linkPhone, linkName, desc,null);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.parseInt(orderConfirm.getId()), linkPhone, linkName, desc,null,null,null);
         call.enqueue(new Callback<ResultDO<String>>() {
             @Override
             public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {

@@ -229,7 +229,6 @@ public class IndexAdapter extends RecyclerView.Adapter {
                     SellerShop sellerShop= (SellerShop) v.getTag();
                     String type = sellerShop.getType();
                     if (type.equals("12")){
-//                        Intent intent=new Intent(mContext, ComitClothOrderActivity.class);
                         Intent intent=new Intent(mContext, TiansheMarketActivity.class);
                         intent.putExtra("shopName",sellerShop.getName());
                         intent.putExtra("shopId",sellerShop.getId());

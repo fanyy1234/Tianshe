@@ -8,10 +8,19 @@ import com.sunday.tianshehuoji.type.TypeFactory;
  */
 
 public class TiansheProduct implements Visitable{
+    private Integer id;
     private String img;
     private String name;
     private String newPrice;
     private String oldPrice;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getImg() {
         return img;

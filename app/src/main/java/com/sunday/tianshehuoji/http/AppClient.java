@@ -29,8 +29,8 @@ public class AppClient {
 
     private static Retrofit imAdapter;
     private static AppService appService;
-//    private static String API_URL = "http://192.168.0.104:8085/";
-    private static String API_URL = "http://day-mobile2.tiansheguoji.com/";
+    private static String API_URL = "http://192.168.0.104:8085/";
+//    private static String API_URL = "http://day-mobile2.tiansheguoji.com/";
 
     public final static String DETAIL_URL="http://admin.ysjkj.net/DataController/AfH5Info";
 

@@ -75,8 +75,7 @@ public class ClothingMakeActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initView() {
-        shopId = "42";
-//        shopId = getArguments().getString("shopId");
+        shopId = getIntent().getStringExtra("shopId");
         getInfo();
     }
 
