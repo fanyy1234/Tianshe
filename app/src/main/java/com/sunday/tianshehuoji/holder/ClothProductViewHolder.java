@@ -30,7 +30,7 @@ public class ClothProductViewHolder extends BaseViewHolder<ClothProduct> {
         final TextView productTitle = (TextView) getView(R.id.product_title);
         final View rootView = getView(R.id.total_layout);
         productTitle.setText(model.getName());
-        newPrice.setText(model.getNewPrice());
+        newPrice.setText("￥"+model.getNewPrice());
 
 //        oldPrice.setText(model.getOldPrice());
 //        oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线

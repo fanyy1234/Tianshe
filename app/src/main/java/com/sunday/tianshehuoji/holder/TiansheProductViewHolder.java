@@ -30,15 +30,15 @@ public class TiansheProductViewHolder extends BaseViewHolder<TiansheProduct> {
         final TextView productTitle = (TextView) getView(R.id.product_title);
         final View rootView = getView(R.id.total_layout);
         productTitle.setText(model.getName());
-        newPrice.setText(model.getNewPrice());
-        oldPrice.setText(model.getOldPrice());
-        oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
+        newPrice.setText("￥"+model.getNewPrice());
+//        oldPrice.setText(model.getOldPrice());
+//        oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
 //        Picasso.with(adapter.getmContext()).load(model.getImg()).into(img);
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(adapter.getmContext(), ProductDetailActivity.class);
-                intent.putExtra("name",model.getImg());
+                intent.putExtra("name",model.getName());
                 intent.putExtra("id",model.getId());
                 intent.putExtra("price",model.getNewPrice());
                 intent.putExtra("img",model.getImg());

@@ -279,6 +279,7 @@ public class ConfirmBuyActivity extends BaseActivity {
                     intent.putExtra("linkPhone",linkPhone);
                     intent.putExtra("linkName",linkName);
                     intent.putExtra("desc",desc);
+                    intent.putExtra("payFlag",2);
                     startActivity(intent);
                 }
             }

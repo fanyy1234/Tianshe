@@ -33,7 +33,7 @@ public class BaseApplication extends Application implements Thread.UncaughtExcep
     public static int screenWidth;//屏幕宽度
     public static int screenHeight;//屏幕高度
     private boolean isConsumed=false;
-    private static int payFlag ;//微信支付用途1钱包充值2订单支付
+    private static int payFlag ;//微信支付用途1钱包充值2订单支付3天奢商城4服装定制5我的订单
     private static int clearCartFlag=0;//1表示需要清空购物车
 
     public synchronized static BaseApplication getInstance() {

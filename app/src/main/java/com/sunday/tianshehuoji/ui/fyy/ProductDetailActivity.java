@@ -140,14 +140,11 @@ public class ProductDetailActivity extends BaseActivity {
         productId = getIntent().getIntExtra("id",0);
         productDetail = new ProductDetail();
         productDetail.setCurrentPrice(BigDecimal.valueOf(Double.parseDouble(getIntent().getStringExtra("price"))));
-    }
 
-    private String url;
-    private int detailType = 1;
-
-    private void initView() {
         final List<String> bannerImgs = new ArrayList<>();
-        url = String.format(AppClient.DETAIL_URL + "?id=%1$d&type=%2$d", productId, detailType);
+        String img = getIntent().getStringExtra("img");
+        bannerImgs.add(img);
+
         if (productDetail.getImages() != null && productDetail.getImages().size() > 0) {
             bannerImgs.addAll(productDetail.getImages());
         }
@@ -157,6 +154,7 @@ public class ProductDetailActivity extends BaseActivity {
         if (bannerImgs.size() > 1) {
             banner.startTurning(3000);
         }
+
         final StringBannerHolder stringBannerHolder = new StringBannerHolder();
         banner.setPages(new ViewHolderCreator<StringBannerHolder>() {
             @Override
@@ -177,7 +175,17 @@ public class ProductDetailActivity extends BaseActivity {
         });
         banner.notifyDataSetChanged();
 
+        productTitle.setText(getIntent().getStringExtra("name"));
+        productPrice.setText("￥"+getIntent().getStringExtra("price"));
+    }
 
+    private String url;
+    private int detailType = 1;
+
+    private void initView() {
+
+
+//        url = String.format(AppClient.DETAIL_URL + "?id=%1$d&type=%2$d", productId, detailType);
         TabLayout.Tab detail = tabs.newTab().setText("商品介绍");
         TabLayout.Tab comment = tabs.newTab().setText("购买须知");
         tabs.addTab(detail);

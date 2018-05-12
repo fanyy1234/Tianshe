@@ -15,6 +15,7 @@ import com.sunday.common.model.ResultDO;
 import com.sunday.common.utils.Constants;
 import com.sunday.common.utils.ToastUtils;
 import com.sunday.common.widgets.EmptyLayout;
+import com.sunday.common.widgets.UIAlertView;
 import com.sunday.common.widgets.ptr.PtrClassicFrameLayout;
 import com.sunday.common.widgets.ptr.PtrDefaultHandler;
 import com.sunday.common.widgets.ptr.PtrFrameLayout;
@@ -22,12 +23,20 @@ import com.sunday.common.widgets.ptr.PtrHandler;
 import com.sunday.common.widgets.recyclerView.HorizontalDividerItemDecoration;
 import com.sunday.member.base.BaseFragment;
 import com.sunday.member.utils.SharePerferenceUtils;
+import com.sunday.tianshehuoji.BaseApplication;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.OrderAdapter;
+import com.sunday.tianshehuoji.entity.Account;
 import com.sunday.tianshehuoji.entity.Order;
 import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.ui.fragment.OrderListFragment;
+import com.sunday.tianshehuoji.ui.fyy.ComitOrderActivity;
+import com.sunday.tianshehuoji.ui.product.BuyOrderActivity;
+import com.sunday.tianshehuoji.ui.product.OrderPayActivity;
+import com.sunday.tianshehuoji.utils.EntityUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +67,9 @@ public class OrderListMarketFragment extends BaseFragment {
     private OrderAdapter orderAdapter;
     private boolean isCanloadMore;
     private LinearLayoutManager layoutManager;
-    private int orderType;
+    private int orderId;
+    private BigDecimal balance;
+    private BigDecimal realMoney;
     public static OrderListMarketFragment newInstance(int status) {
         OrderListMarketFragment fragment = new OrderListMarketFragment();
         Bundle args = new Bundle();
@@ -160,7 +171,12 @@ public class OrderListMarketFragment extends BaseFragment {
                                break;
                            case 0:
                                //支付订单 先调用订单支付获取订单
-                               getOrderPay(item.getId());
+                               orderId = item.getId();
+                               realMoney = item.getRealMoney();
+                               Intent intent = new Intent(getActivity(),OrderPayActivity.class);
+                               intent.putExtra("orderId",orderId);
+                               intent.putExtra("realMoney",realMoney.toString());
+                               startActivity(intent);
                                break;
                            case 1:
                                //申请退款
@@ -250,29 +266,6 @@ public class OrderListMarketFragment extends BaseFragment {
         });
     }
 
-    private void getOrderPay(int orderId){
-//        Call<ResultDO<Order>>call=ApiClient.getApiAdapter().getOrderPay(orderId);
-//        call.enqueue(new Callback<ResultDO<Order>>() {
-//            @Override
-//            public void onResponse(Call<ResultDO<Order>> call, Response<ResultDO<Order>> response) {
-//                if (isFinish){return;}
-//                if (response.body()==null){return;}
-//                if (response.body().getCode()==0){
-//                    Order item=response.body().getResult();
-//                    intent=new Intent(mContext,OrderPayActivity.class);
-//                    intent.putExtra("order",item);
-//                    intent.putExtra("isGroupBuy",false);
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultDO<Order>> call, Throwable t) {
-//
-//            }
-//        });
-    }
-
 
     private void cancelOrder(int p){
         showLoadingDialog(0);
@@ -283,6 +276,7 @@ public class OrderListMarketFragment extends BaseFragment {
                 if (isFinish){return;}
                 dissMissDialog();
                 if (response.body()==null){
+                    refresh();
                     return;
                 }
                 if (response.body().getCode()==0){
@@ -357,6 +351,8 @@ public class OrderListMarketFragment extends BaseFragment {
 
     public void refresh(){
         ptrFrame.autoRefresh();
+        pageNo = 1;
+        getOrderList();
     }
 
 

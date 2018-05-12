@@ -570,4 +570,10 @@ public interface AppService {
     @FormUrlEncoded
     @POST("/mobile/order/getOrderDetail")
     Call<ResultDO<OrderResult>> getOrderDetailByOrderId(@Field("orderId") Integer orderId);
+    /**
+     * 完成订单支付type1 支付宝2 微信 3余额
+     */
+    @FormUrlEncoded
+    @POST("/mobile/order/payOrder")
+    Call<ResultDO> payOrder(@Field("orderId") Integer orderId,@Field("type") Integer type);
 }

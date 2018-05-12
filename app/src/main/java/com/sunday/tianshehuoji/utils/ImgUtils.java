@@ -12,7 +12,7 @@ public class ImgUtils {
         String str2="http://day-mobile2.tiansheguoji.com";
 
         if (sourceStr==null||sourceStr.equals("")){
-            return "";
+            return "00";
         }
         if (sourceStr.contains(str1)){
             sourceStr = sourceStr.replace(str1,str2);

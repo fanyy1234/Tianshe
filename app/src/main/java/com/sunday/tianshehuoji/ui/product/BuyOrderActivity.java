@@ -21,6 +21,8 @@ import com.sunday.tianshehuoji.BaseApplication;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.alipay.PayResult;
 import com.sunday.tianshehuoji.http.AppClient;
+import com.sunday.tianshehuoji.ui.fyy.ComitClothOrderActivity;
+import com.sunday.tianshehuoji.ui.fyy.ComitOrderActivity;
 import com.sunday.tianshehuoji.ui.manage.ReChargeActivity;
 import com.sunday.tianshehuoji.utils.EntityUtil;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -59,7 +61,7 @@ public class BuyOrderActivity extends BaseActivity {
     String alipayInfo;
     public static BuyOrderActivity buyOrderActivity;
     private IWXAPI api;
-
+    private int payFlag;
     private String cartId,linkPhone,linkName,desc;
 
     private Integer sizeId = null;
@@ -75,6 +77,7 @@ public class BuyOrderActivity extends BaseActivity {
     private void initView() {
         addressId = getIntent().getIntExtra("addressId",0);
         sizeId = getIntent().getIntExtra("sizeId",0);
+        payFlag = getIntent().getIntExtra("payFlag",0);
         if (addressId==0){
             addressId = null;
         }
@@ -192,7 +195,7 @@ public class BuyOrderActivity extends BaseActivity {
                     req.sign			= json.getString("paySign");
                     req.signType       = "MD5";
 //                    req.extData			= "app data"; // optional
-                    BaseApplication.setPayFlag(2);
+                    BaseApplication.setPayFlag(payFlag);
                     api.sendReq(req);
                 }
                 else {
@@ -227,8 +230,17 @@ public class BuyOrderActivity extends BaseActivity {
                     if (resultStatus.equals("9000")) {
 //                        RefreshFlag.setWallet(1);
                         ToastUtils.showToast(mContext,"充值成功");
-                        BaseApplication.setClearCartFlag(1);
-                        ConfirmBuyActivity.confirmBuyActivity.finish();
+                        if (payFlag==2){
+                            BaseApplication.setClearCartFlag(1);
+                            ConfirmBuyActivity.confirmBuyActivity.finish();
+                        }else if (payFlag==3){
+                            ComitOrderActivity.comitOrderActivity.finish();
+                        }else if (payFlag==4){
+                            ComitClothOrderActivity.comitClothOrderActivity.finish();
+                        }else if (payFlag==5){
+
+                        }
+
                         finish();
                     } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败

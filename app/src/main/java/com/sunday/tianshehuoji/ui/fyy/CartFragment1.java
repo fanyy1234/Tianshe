@@ -596,7 +596,7 @@ public class CartFragment1 extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-            getData();
+        getData();
     }
 
     @Override

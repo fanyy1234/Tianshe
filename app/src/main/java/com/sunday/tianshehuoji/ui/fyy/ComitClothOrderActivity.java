@@ -107,6 +107,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
     private BigDecimal balance;
     private OrderConfirm orderConfirm;
     private String desc;
+    public static ComitClothOrderActivity comitClothOrderActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,13 +115,14 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
         ButterKnife.bind(this);
         titleView.setText("提交订单");
         memberId = Integer.valueOf(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID, ""));
-        shopId = TiansheMarketActivity.shopId;
-        shopType = TiansheMarketActivity.shopType;
+        shopId = ClothingMakeActivity.shopId;
+        shopType = ClothingMakeActivity.shopType;
         initView();
         getDefaultAddr();
     }
 
     private void initView() {
+        comitClothOrderActivity = this;
         adapter = new MultiTypeAdapter(models, this);
         layoutManager = new LinearLayoutManager(this);
         clothList.setLayoutManager(layoutManager);
@@ -312,6 +314,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
                     intent.putExtra("desc",desc);
                     intent.putExtra("addressId",Integer.valueOf(address.getId()));
                     intent.putExtra("sizeId",Integer.valueOf(memberSize.getId()));
+                    intent.putExtra("payFlag",4);
                     startActivity(intent);
                 }
             }
@@ -319,7 +322,7 @@ public class ComitClothOrderActivity extends BaseActivity implements View.OnClic
     }
     private void buyWithBalance(){
         showLoadingDialog(0);
-        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.parseInt(orderConfirm.getId()), address.getMobile(), address.getName(), desc,null,null,null);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(Integer.parseInt(orderConfirm.getId()), address.getMobile(), address.getName(), desc,null,address.getId(),memberSize.getId());
         call.enqueue(new Callback<ResultDO<String>>() {
             @Override
             public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {

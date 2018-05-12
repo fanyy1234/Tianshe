@@ -21,6 +21,7 @@ import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.model.SubmitOrderProduct;
 import com.sunday.tianshehuoji.model.Visitable;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,9 +141,9 @@ public class OrderDetailMarketActivity extends BaseActivity {
             btnBuy.setVisibility(View.GONE);
             btnCancel.setVisibility(View.GONE);
         }
-        priceSum.setText(String.format("￥%s", orderDetail.getTotalMoney().setScale(2, RoundingMode.HALF_UP)));
-        realMoney.setText(String.format("￥%s", orderDetail.getRealMoney().setScale(2, RoundingMode.HALF_UP)));
-        discountMoney.setText(String.format("￥%s", orderDetail.getDiscountPrice().setScale(2, RoundingMode.HALF_UP)));
+        priceSum.setText(String.format("￥%s", orderDetail.getTotalMoney().divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)));
+        realMoney.setText(String.format("￥%s", orderDetail.getRealMoney().divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)));
+        discountMoney.setText(String.format("￥%s", orderDetail.getDiscountPrice().divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)));
 //        textRecord.setText(String.format("备注：%s", orderDetail.getDesc()));
         orderNo.setText(orderDetail.getOrderNo());
         createTime.setText(orderDetail.getCreateTime());

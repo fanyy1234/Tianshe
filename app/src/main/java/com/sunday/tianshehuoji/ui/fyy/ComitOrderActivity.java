@@ -86,6 +86,7 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
     private String desc;
     private BigDecimal balance;
     private Integer realMoney;
+    public static ComitOrderActivity comitOrderActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +99,7 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initView() {
+        comitOrderActivity = this;
         adapter = new MultiTypeAdapter(models, this);
         layoutManager = new LinearLayoutManager(this);
         clothList.setLayoutManager(layoutManager);
@@ -280,6 +282,7 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra("linkName",address.getName());
                     intent.putExtra("desc",desc);
                     intent.putExtra("addressId",Integer.valueOf(address.getId()));
+                    intent.putExtra("addressId",3);
                     startActivity(intent);
                 }
             }
@@ -287,7 +290,7 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
     }
     private void buyWithBalance(){
         showLoadingDialog(0);
-        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(cartId, address.getMobile(), address.getName(), desc,null,null,null);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(cartId, address.getMobile(), address.getName(), desc,null,address.getId(),null);
         call.enqueue(new Callback<ResultDO<String>>() {
             @Override
             public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {

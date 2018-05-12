@@ -61,7 +61,8 @@ public class ClothingMakeActivity extends BaseActivity implements View.OnClickLi
     @Bind(R.id.viewpager)
     ViewPager viewPager;
     String[] type;
-    private String shopId;
+    public static String shopId;
+    public static String shopType;
     List<Map<String, Object>> mapList = new ArrayList<>();
 
     @Override
@@ -76,6 +77,7 @@ public class ClothingMakeActivity extends BaseActivity implements View.OnClickLi
 
     private void initView() {
         shopId = getIntent().getStringExtra("shopId");
+        shopType = getIntent().getStringExtra("shopType");
         getInfo();
     }
 

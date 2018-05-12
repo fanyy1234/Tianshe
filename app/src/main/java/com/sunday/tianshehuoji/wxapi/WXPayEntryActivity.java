@@ -13,9 +13,12 @@ import com.sunday.common.utils.ToastUtils;
 import com.sunday.member.base.BaseActivity;
 import com.sunday.tianshehuoji.BaseApplication;
 import com.sunday.tianshehuoji.R;
+import com.sunday.tianshehuoji.ui.fyy.ComitClothOrderActivity;
+import com.sunday.tianshehuoji.ui.fyy.ComitOrderActivity;
 import com.sunday.tianshehuoji.ui.manage.ReChargeActivity;
 import com.sunday.tianshehuoji.ui.product.BuyOrderActivity;
 import com.sunday.tianshehuoji.ui.product.ConfirmBuyActivity;
+import com.sunday.tianshehuoji.ui.product.OrderPayActivity;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -63,6 +66,17 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
 					finish();
 					BuyOrderActivity.buyOrderActivity.finish();
 					ConfirmBuyActivity.confirmBuyActivity.finish();
+				}else if(BaseApplication.getPayFlag()==3){//天奢商城
+					finish();
+					BuyOrderActivity.buyOrderActivity.finish();
+					ComitOrderActivity.comitOrderActivity.finish();
+				}else if(BaseApplication.getPayFlag()==4){//服装定制
+					finish();
+					BuyOrderActivity.buyOrderActivity.finish();
+					ComitClothOrderActivity.comitClothOrderActivity.finish();
+				}else if(BaseApplication.getPayFlag()==5){//我的订单
+					finish();
+					OrderPayActivity.orderPayActivity.finish();
 				}
 			}
 			else if(resp.errCode == -1){
