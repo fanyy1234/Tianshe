@@ -1,4 +1,6 @@
-package com.sunday.tianshehuoji.entity.order;
+package com.sunday.tianshehuoji.entity;
+
+import com.sunday.tianshehuoji.entity.order.OrderItem;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -70,7 +72,7 @@ public class Order {
     private String desc;
     private String twocodeUrl;
     private String cancelNo;
-    private List<OrderItem> orderIteam;
+    private List<OrderItem> orderItemList;
 
     public Integer getId() {
         return id;
@@ -305,12 +307,12 @@ public class Order {
         this.arriveTime = arriveTime;
     }
 
-    public List<OrderItem> getOrderIteam() {
-        return orderIteam;
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
     }
 
-    public void setOrderIteam(List<OrderItem> orderIteam) {
-        this.orderIteam = orderIteam;
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
     public String getProductType() {

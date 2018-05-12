@@ -33,10 +33,18 @@ import com.sunday.member.utils.SharePerferenceUtils;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.StringBannerHolder;
 import com.sunday.tianshehuoji.entity.ProductDetail;
+import com.sunday.tianshehuoji.entity.order.OrderConfirm;
 import com.sunday.tianshehuoji.http.AppClient;
+import com.sunday.tianshehuoji.http.Constant;
 import com.sunday.tianshehuoji.ui.ShowBigImage;
 import com.sunday.tianshehuoji.ui.login.LoginActivity;
+import com.sunday.tianshehuoji.widgets.SelectProSpecWindow;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,9 +110,9 @@ public class ProductDetailActivity extends BaseActivity {
     TextView houseName;
 
     private int type=1;//(1-普通商品 2-限时购 3-跨境 4-满减)
-    private long productId;
-    private long memberId;
-    private Long limitId;
+    private Integer memberId;
+    private Integer productId;
+    private String shopId,shopType;
 
     private ProductDetail productDetail;
     private int integralFlag;
@@ -114,22 +122,24 @@ public class ProductDetailActivity extends BaseActivity {
         setContentView(R.layout.layout_product_detail);
         ButterKnife.bind(this);
         initParams();
-        getProductDetail();
+//        getProductDetail();
 
     }
 
     private void initParams() {
         String memberIdStr= SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID,"");
-        memberId = Long.valueOf(memberIdStr);
-        productId = getIntent().getLongExtra("productId", 0);
-        type = getIntent().getIntExtra("type", 1);//(1-普通商品 2-限时购 3-跨境 4-满减)
-        integralFlag = getIntent().getIntExtra("integralFlag", 0);//1表示积分商城的商品
-        limitId = getIntent().getLongExtra("limitId", 0);
+        memberId = Integer.valueOf(SharePerferenceUtils.getIns(mContext).getString(Constants.MEMBERID, ""));
+        shopId = TiansheMarketActivity.shopId;
+        shopType = TiansheMarketActivity.shopType;
         titleView.setText("商品详情");
         rightBtn.setVisibility(View.GONE);
 //        rightBtn.setImageResource(R.mipmap.share);
         banner.getLayoutParams().width = DeviceUtils.getDisplay(mContext).widthPixels;
         banner.getLayoutParams().height = DeviceUtils.getDisplay(mContext).widthPixels;
+
+        productId = getIntent().getIntExtra("id",0);
+        productDetail = new ProductDetail();
+        productDetail.setCurrentPrice(BigDecimal.valueOf(Double.parseDouble(getIntent().getStringExtra("price"))));
     }
 
     private String url;
@@ -371,14 +381,11 @@ public class ProductDetailActivity extends BaseActivity {
     }
 
 
-//    private SelectProSpecWindow specWindow;
+    private SelectProSpecWindow specWindow;
 
-    @OnClick({R.id.right_btn, R.id.select_spec, R.id.add_cart, R.id.buy_now, R.id.img_cart, R.id.product_store_num})
+    @OnClick({R.id.select_spec, R.id.add_cart, R.id.buy_now, R.id.img_cart, R.id.product_store_num})
     void onClick(View v) {
         switch (v.getId()) {
-            case R.id.right_btn:
-                showWindow();
-                break;
             case R.id.select_spec:
                 //产品规格
 //                if (specWindow == null) {
@@ -388,14 +395,12 @@ public class ProductDetailActivity extends BaseActivity {
 //                specWindow.showPopupWindow(selectSpec);
                 break;
             case R.id.add_cart:
-//                if (specWindow == null) {
-//                    specWindow = new SelectProSpecWindow(mContext, productDetail, type, Constant.TYPE_ADDCART);
-//                }
-//
-//                specWindow.setBuyType(Constant.TYPE_ADDCART);
-//                specWindow.showPopupWindow(addCart);
-                intent = new Intent(mContext, ComitOrderActivity.class);
-                startActivity(intent);
+                if (specWindow == null) {
+                    specWindow = new SelectProSpecWindow(mContext, productDetail, type, Constant.TYPE_ADDCART);
+                }
+
+                specWindow.setBuyType(Constant.TYPE_ADDCART);
+                specWindow.showPopupWindow(addCart);
                 break;
             case R.id.buy_now:
 //                if (specWindow == null) {
@@ -416,17 +421,17 @@ public class ProductDetailActivity extends BaseActivity {
                 }
                 break;
         }
-//        if (specWindow != null)
-//            specWindow.setOnSelectListener(new SelectProSpecWindow.OnSelectListener() {
-//                @Override
-//                public void onSelect(long paramId, int number, int type) {
-//                    if (type == 1) {
-//                        addCart(paramId, number);
-//                    } else if (type == 2) {
-//                        buyNow(paramId, number);
-//                    }
-//                }
-//            });
+        if (specWindow != null)
+            specWindow.setOnSelectListener(new SelectProSpecWindow.OnSelectListener() {
+                @Override
+                public void onSelect(int number, int type) {
+                    if (type == 1) {
+                        addCart(number);
+                    } else if (type == 2) {
+                        buyNow( number);
+                    }
+                }
+            });
     }
 
     private void applyAddProduct() {
@@ -454,64 +459,34 @@ public class ProductDetailActivity extends BaseActivity {
 //        });
     }
 
-    public void showWindow() {
-         /*1我要开店2分享店铺3普通商品4限时购商品)-memberId(会员Id)-productId(商品Id)-limitId(限时购时间段Id)
-                    这四个参数没有值的传0
-                    例如普通商品分享：http://weixin.zj-yunti.com/authorizationPage.html?param=3-1-14-0*/
-//        String shareUrl = String.format("%1$s%2$d-%3$d-%4$d-%5$d", ApiClient.SHARE_URL, limitId == 0 ? 3 : 4, BaseApp.getInstance().getMember().getId(), productId, limitId);
-//        ShareWindow shareWindow = new ShareWindow(mContext, shareUrl, productDetail.getName(), productDetail.getDetailImage(),
-//                mContext.getResources().getString(R.string.share_product_desc),
-//                String.format("%s", productDetail.getCurrentPrice().setScale(2, RoundingMode.HALF_UP)),productDetail.getShareImage());
-//        shareWindow.showPopupWindow(rightBtn);
-    }
 
 
-    private void showLoginDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("温馨提示");
-        builder.setMessage("您暂未登录！请点击确认登录");
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+    private void addCart(int num) {
+        Call<ResultDO<OrderConfirm>> call = AppClient.getAppAdapter().OrderConfirm(memberId.toString(), shopId, null, null, null, null,
+                null, shopType, getJson(num));
+        call.enqueue(new Callback<ResultDO<OrderConfirm>>() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            public void onResponse(Call<ResultDO<OrderConfirm>> call, Response<ResultDO<OrderConfirm>> response) {
+                ResultDO<OrderConfirm> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (response.body().getCode() == 0) {
+                    ToastUtils.showToast(mContext, "加入购物车成功");
+                } else {
+                    ToastUtils.showToast(mContext, response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<OrderConfirm>> call, Throwable t) {
+
             }
         });
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                intent = new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        builder.show();
     }
 
-    private void addCart(long paramId, int num) {
-//        Call<ResultDO> call = AppClient.getAppAdapter().addCart(productDetail.getType(), productId, paramId, memberId, num);
-//        call.enqueue(new Callback<ResultDO>() {
-//            @Override
-//            public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
-//                if (isFinish) {
-//                    return;
-//                }
-//                if (response.body() == null) {
-//                    return;
-//                }
-//                if (response.body().getCode() == 0) {
-//                    ToastUtils.showToast(mContext, "加入购物车成功");
-//                } else {
-//                    ToastUtils.showToast(mContext, response.body().getMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultDO> call, Throwable t) {
-//                ToastUtils.showToast(mContext, R.string.network_error);
-//            }
-//        });
-    }
-
-    private void buyNow(long paramId, int num) {
+    private void buyNow(int num) {
 //        showLoadingDialog(0);
 //        Call<ResultDO<CartPay>> call = AppClient.getAppAdapter().buyNowNew(productDetail.getType(), (int)productId, (int)memberId,(int)paramId,  num);
 //        call.enqueue(new Callback<ResultDO<CartPay>>() {
@@ -542,7 +517,19 @@ public class ProductDetailActivity extends BaseActivity {
 //        });
     }
 
-
+    private String getJson(int num) {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject();
+            jsonObject.put("productId", productId);
+            jsonObject.put("num", num);
+            jsonArray.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonArray.toString();
+    }
     @Override
     protected void onDestroy() {
         banner.stopTurning();

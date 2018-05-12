@@ -34,6 +34,7 @@ import com.sunday.tianshehuoji.ui.manage.ReChargeActivity;
 import com.sunday.tianshehuoji.ui.manage.SettingActivity;
 import com.sunday.tianshehuoji.ui.manage.ShareProfitActivity;
 import com.sunday.tianshehuoji.ui.manage.VotingListActivity;
+import com.sunday.tianshehuoji.ui.order.OrderListActivity;
 import com.sunday.tianshehuoji.utils.ImgUtils;
 
 import java.math.RoundingMode;
@@ -230,6 +231,12 @@ public class ManageFragment extends BaseFragment {
     @OnClick(R.id.menu7)
     void menu7() {
         intent = new Intent(mContext, AddressListActivity.class);
+        startActivity(intent);
+    }
+    //收货地址
+    @OnClick(R.id.menu8)
+    void menu8() {
+        intent = new Intent(mContext, OrderListActivity.class);
         startActivity(intent);
     }
 

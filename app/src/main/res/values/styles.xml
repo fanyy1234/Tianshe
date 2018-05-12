@@ -53,4 +53,9 @@
         <item name="android:background">@color/navpage</item>
     </style>
 
+    <style name="popuwindow">
+        <item name="android:windowEnterAnimation">@anim/pou_anim</item>
+        <item name="android:windowExitAnimation">@anim/popu_anim_out</item>
+    </style>
+
 </resources>

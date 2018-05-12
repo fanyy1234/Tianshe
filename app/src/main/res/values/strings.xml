@@ -6,7 +6,13 @@
         <item>评价</item>
         <item>详情</item>
     </array>
-
+    <array name="order_title">
+        <item>待付款</item>
+        <item>待发货</item>
+        <item>待评价</item>
+        <item>已完成</item>
+        <item>配送中</item>
+    </array>
     <string name="recharge_introduce">
         如因充值金额太高，无法完成充值，可联系客服进行线下充值
         客服电话：0579-8888888

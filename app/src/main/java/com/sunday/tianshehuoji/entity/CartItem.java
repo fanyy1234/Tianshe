@@ -30,77 +30,44 @@ public class CartItem implements Serializable {
      * scale : 0
      */
 
-    private long id;
-    private long memberId;
-    private int userId;
-    private int type;
-    private long productId;
-    private String productName;
-    private BigDecimal price;
-    private BigDecimal totalPrice;
+    private int id;
+    private int cartId;
+    private int productId;
     private int num;
-    private String elements;
-    private int paramId;
-    private String image;
-    private Integer limitBuyId;
-    private int productStore;
-    private BigDecimal scale;
-    private String remark;
-    private int isInvalid;
+    private String name;
+    private String typeName;
+    private String logo;
+    private int price;
+    private int chooseService;
+    private int chooseWaiter;
+    private int categoryId;
+
 
     private boolean isSelect;
-    private String typeName;
-    private int score;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getMemberId() {
-        return memberId;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setMemberId(long memberId) {
-        this.memberId = memberId;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public long getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-
 
     public int getNum() {
         return num;
@@ -110,97 +77,12 @@ public class CartItem implements Serializable {
         this.num = num;
     }
 
-    public String getElements() {
-        return elements;
+    public String getName() {
+        return name;
     }
 
-    public void setElements(String elements) {
-        this.elements = elements;
-    }
-
-    public int getParamId() {
-        return paramId;
-    }
-
-    public void setParamId(int paramId) {
-        this.paramId = paramId;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-
-
-    public int getProductStore() {
-        return productStore;
-    }
-
-    public void setProductStore(int productStore) {
-        this.productStore = productStore;
-    }
-
-
-
-    public Integer getLimitBuyId() {
-        return limitBuyId;
-    }
-
-    public void setLimitBuyId(Integer limitBuyId) {
-        this.limitBuyId = limitBuyId;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
-    }
-
-
-    public BigDecimal getScale() {
-        return scale;
-    }
-
-    public void setScale(BigDecimal scale) {
-        this.scale = scale;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getIsInvalid() {
-        return isInvalid;
-    }
-
-    public void setIsInvalid(int isInvalid) {
-        this.isInvalid = isInvalid;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTypeName() {
@@ -211,11 +93,51 @@ public class CartItem implements Serializable {
         this.typeName = typeName;
     }
 
-    public int getScore() {
-        return score;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getChooseService() {
+        return chooseService;
+    }
+
+    public void setChooseService(int chooseService) {
+        this.chooseService = chooseService;
+    }
+
+    public int getChooseWaiter() {
+        return chooseWaiter;
+    }
+
+    public void setChooseWaiter(int chooseWaiter) {
+        this.chooseWaiter = chooseWaiter;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
     }
 }

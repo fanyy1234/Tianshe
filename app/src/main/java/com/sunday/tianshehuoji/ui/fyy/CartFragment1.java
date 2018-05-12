@@ -352,27 +352,27 @@ public class CartFragment1 extends BaseFragment {
 
     //更新购物项的单个数量
     private void updateCart(final int parentP, final int childP, int num) {
-//        Call<ResultDO> call = AppClient.getAppAdapter().updateCart(dataSet.get(parentP).getCartItemList().get(childP).getId(), num);
-//        call.enqueue(new Callback<ResultDO>() {
-//            @Override
-//            public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
-//                ResultDO resultDO = response.body();
-//                if (resultDO == null) {
-//                    return;
-//                }
-//                if (resultDO.getCode() == 0) {
-//                    //如果是选中的数量有变化重新结算
-//                    if (dataSet.get(parentP).getCartItemList().get(childP).isSelect()) {
-//                        updatePrice();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultDO> call, Throwable t) {
-//                ToastUtils.showToast(mContext, "网络错误");
-//            }
-//        });
+        Call<ResultDO> call = AppClient.getAppAdapter().updateCart(dataSet.get(parentP).getCartItemList().get(childP).getId(), num);
+        call.enqueue(new Callback<ResultDO>() {
+            @Override
+            public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
+                ResultDO resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    //如果是选中的数量有变化重新结算
+                    if (dataSet.get(parentP).getCartItemList().get(childP).isSelect()) {
+                        updatePrice();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO> call, Throwable t) {
+                ToastUtils.showToast(mContext, "网络错误");
+            }
+        });
 
     }
 
@@ -399,9 +399,9 @@ public class CartFragment1 extends BaseFragment {
             return;
         }
         for (CartItem cartItem : buyProducts) {
-            if (cartItem.isSelect() && cartItem.getProductStore() > 0) {
+            if (cartItem.isSelect() ) {
                 selectNum += cartItem.getNum();
-                totalMoney = totalMoney.add(cartItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getNum())));
+                totalMoney = totalMoney.add(BigDecimal.valueOf(cartItem.getPrice()).multiply(BigDecimal.valueOf(cartItem.getNum())));
             }
         }
         BigDecimal countMoney = totalMoney;
@@ -416,26 +416,26 @@ public class CartFragment1 extends BaseFragment {
     }
 
     private void deleteCart(final int parentP, final int childP) {
-//        showLoadingDialog(0);
-//        Call<ResultDO> call = AppClient.getAppAdapter().deleteCart(dataSet.get(parentP).getCartItemList().get(childP).getId());
-//        call.enqueue(new Callback<ResultDO>() {
-//            @Override
-//            public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
-//                dissMissDialog();
-//                if (isFinish || response.body() == null) {
-//                    return;
-//                }
-//                if (response.body().getCode() == 0) {
-//                    getData();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultDO> call, Throwable t) {
-//                dissMissDialog();
-//                ToastUtils.showToast(mContext, R.string.network_error);
-//            }
-//        });
+        showLoadingDialog(0);
+        Call<ResultDO> call = AppClient.getAppAdapter().updateCart(dataSet.get(parentP).getCartItemList().get(childP).getId(),0);
+        call.enqueue(new Callback<ResultDO>() {
+            @Override
+            public void onResponse(Call<ResultDO> call, Response<ResultDO> response) {
+                dissMissDialog();
+                if (isFinish || response.body() == null) {
+                    return;
+                }
+                if (response.body().getCode() == 0) {
+                    getData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO> call, Throwable t) {
+                dissMissDialog();
+                ToastUtils.showToast(mContext, R.string.network_error);
+            }
+        });
     }
 
 
@@ -465,46 +465,32 @@ public class CartFragment1 extends BaseFragment {
                 break;
             case R.id.btn_buy:
                 //结算跳转订单
-                if (buyProducts.isEmpty()) {
-                    ToastUtils.showToast(mContext, "请选择要购买的产品");
-                    return;
-                }
-                // isActiveProSelected = false;
-//                isNotActiveProSelected = false;
-//                for (CartItem cartItem : buyProducts) {
-//                    if (cartItem.isSelect() && cartItem.getType() == 4 && cartItem.getProductStore() > 0) {
-//                       // isActiveProSelected = true;
-//                        break;
-//                    }
-//                }
-//                for (CartItem cartItem : buyProducts) {
-//                    if (cartItem.isSelect() && cartItem.getType() != 4 && cartItem.getProductStore() > 0) {
-//                        isNotActiveProSelected = true;
-//                        break;
-//                    }
-//                }
-//                if (isActiveProSelected && isNotActiveProSelected) {
-//                    ToastUtils.showToast(mContext, "满减产品不能和非满减产品一起结算！");
+//                if (buyProducts.isEmpty()) {
+//                    ToastUtils.showToast(mContext, "请选择要购买的产品");
 //                    return;
 //                }
-
-                cartIds.clear();
-                for (CartItem cartItem : buyProducts) {
-                    if (cartItem.isSelect() && cartItem.getProductStore() > 0) {
-                        cartIds.add(String.valueOf(cartItem.getId()));
-                        String typeName = cartItem.getTypeName();
-                        typeNameList.add(typeName);
-                    }
-                }
-                if (!cartIds.isEmpty()) {
-                    if (typeNameList.size()==1){
-                        payCart();
+//                cartIds.clear();
+//                for (CartItem cartItem : buyProducts) {
+//                    if (cartItem.isSelect()) {
+//                        cartIds.add(String.valueOf(cartItem.getId()));
+//                        String typeName = cartItem.getTypeName();
+//                        typeNameList.add(typeName);
+//                    }
+//                }
+//                if (!cartIds.isEmpty()) {
+                    if (dataSet==null||dataSet.size()==0){
+                        ToastUtils.showToast(mContext, "购物车是空的");
                     }
                     else {
-                        ToastUtils.showToast(mContext,"只能选择一种类型的商品");
+                        Intent intent = new Intent(getActivity(),ComitOrderActivity.class);
+                        startActivity(intent);
                     }
 
-                }
+//                }
+//                else {
+//                    ToastUtils.showToast(mContext, "请选择要购买的产品");
+//                }
+
                 break;
             case R.id.text_login:
                 break;
@@ -512,9 +498,6 @@ public class CartFragment1 extends BaseFragment {
 
     }
 
-    private void deleteCart1() {
-
-    }
 
     private void payCart() {
 //        showLoadingDialog(0);
@@ -552,98 +535,61 @@ public class CartFragment1 extends BaseFragment {
 
     public void getData() {
         showLoadingDialog(0);
-//        Call<ResultDO<CartTotal>> call = AppClient.getAppAdapter().getCartList(memberId);
-//        call.enqueue(new Callback<ResultDO<CartTotal>>() {
-//            @Override
-//            public void onResponse(Call<ResultDO<CartTotal>> call, Response<ResultDO<CartTotal>> response) {
-//                if (isFinish) {
-//                    return;
-//                }
-//                dissMissDialog();
-//                ptrFrame.refreshComplete();
-//                ResultDO<CartTotal> resultDO = response.body();
-//                if (resultDO == null) {
-//                    return;
-//                }
-//                if (resultDO.getCode() == 0) {
-//                    if (resultDO.getResult() == null) {
-//                        return;
-//                    }
-//                    dataSet.clear();
-//                    if (resultDO.getResult().getBuyList() != null && !resultDO.getResult().getBuyList().isEmpty()) {
-//                        CartListItem cartListItem = new CartListItem();
-//                        cartListItem.setTypeName(resultDO.getResult().getBuyName());
-//                        cartListItem.setType(0);
-//                        cartListItem.setSelected(false);
-//                        cartListItem.setCartItemList(resultDO.getResult().getBuyList());
-//                        dataSet.add(cartListItem);
-//                        for (int i = 0; i < resultDO.getResult().getBuyList().size(); i++) {
-//                            resultDO.getResult().getBuyList().get(i).setSelect(false);
-//                            resultDO.getResult().getBuyList().get(i).setTypeName(resultDO.getResult().getBuyName());
-//                        }
-//                    }
-//
-//                    if (resultDO.getResult().getActiveList() != null && !resultDO.getResult().getActiveList().isEmpty()) {
-//                        CartListItem cartListItem = new CartListItem();
-//                        cartListItem.setTypeName("满减商品");
-//                        cartListItem.setType(2);
-//                        cartListItem.setSelected(false);
-//                        cartListItem.setCartItemList(resultDO.getResult().getActiveList());
-//                        dataSet.add(cartListItem);
-//                        for (int i = 0; i < resultDO.getResult().getActiveList().size(); i++) {
-//                            resultDO.getResult().getActiveList().get(i).setSelect(false);
-//                            resultDO.getResult().getActiveList().get(i).setTypeName("满减商品");
-//                        }
-//                    }
-//                    if (resultDO.getResult().getJfList() != null && !resultDO.getResult().getJfList().isEmpty()) {
-//                        CartListItem cartListItem = new CartListItem();
-//                        cartListItem.setTypeName(resultDO.getResult().getJfName());
-//                        cartListItem.setType(3);
-//                        cartListItem.setSelected(false);
-//                        cartListItem.setCartItemList(resultDO.getResult().getJfList());
-//                        dataSet.add(cartListItem);
-//                        for (int i = 0; i < resultDO.getResult().getJfList().size(); i++) {
-//                            resultDO.getResult().getJfList().get(i).setSelect(false);
-//                            resultDO.getResult().getJfList().get(i).setTypeName(resultDO.getResult().getJfName());
-//                        }
-//                    }
-//
-//                    if (resultDO.getResult().getNotBuyList() != null && !resultDO.getResult().getNotBuyList().isEmpty()) {
-//                        CartListItem cartListItem = new CartListItem();
-//                        cartListItem.setTypeName("预热商品");
-//                        cartListItem.setType(1);
-//                        cartListItem.setSelected(false);
-//                        cartListItem.setCartItemList(resultDO.getResult().getNotBuyList());
-//                        dataSet.add(cartListItem);
-//                        for (int i = 0; i < resultDO.getResult().getNotBuyList().size(); i++) {
-//                            resultDO.getResult().getNotBuyList().get(i).setSelect(false);
-//                            resultDO.getResult().getNotBuyList().get(i).setTypeName("预热商品");
-//                        }
-//                    }
-//                    txt_totalMoney.setText("￥0.00");
-//                    btnBuy.setText("结算");
-//                    if (dataSet.size() > 0) {
-//                        visibleLayout.setVisibility(View.VISIBLE);
-//                        emptyLayout.setVisibility(View.GONE);
-//
-//                    } else {
-//                        emptyLayout.setVisibility(View.VISIBLE);
-//                        visibleLayout.setVisibility(View.GONE);
-//                        emptyLayout.setErrorType(EmptyLayout.NODATA);
-//                        emptyLayout.setNoDataContent("您的购物车是空的");
-//                    }
-//                    selectAll = false;
-//                    checkboxSelectAll.setImageResource(R.mipmap.ic_select_no);
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultDO<CartTotal>> call, Throwable t) {
-//                dissMissDialog();
-//                ptrFrame.refreshComplete();
-//            }
-//        });
+        Call<ResultDO<List<CartTotal>>> call = AppClient.getAppAdapter().getCartList(memberId);
+        call.enqueue(new Callback<ResultDO<List<CartTotal>>>() {
+            @Override
+            public void onResponse(Call<ResultDO<List<CartTotal>>> call, Response<ResultDO<List<CartTotal>>> response) {
+                if (isFinish) {
+                    return;
+                }
+                dissMissDialog();
+                ptrFrame.refreshComplete();
+                ResultDO<List<CartTotal>> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    if (resultDO.getResult() == null||resultDO.getResult().size()==0) {
+                        return;
+                    }
+                    dataSet.clear();
+                    if (resultDO.getResult().get(0).getCartItem() != null && !resultDO.getResult().get(0).getCartItem().isEmpty()) {
+                        CartListItem cartListItem = new CartListItem();
+                        cartListItem.setTypeName("天奢商城");
+                        cartListItem.setType(0);
+                        cartListItem.setSelected(false);
+                        cartListItem.setCartItemList(resultDO.getResult().get(0).getCartItem());
+                        dataSet.add(cartListItem);
+                        for (int i = 0; i < resultDO.getResult().get(0).getCartItem().size(); i++) {
+                            resultDO.getResult().get(0).getCartItem().get(i).setSelect(true);
+                        }
+                    }
+
+                    txt_totalMoney.setText("￥0.00");
+                    btnBuy.setText("结算");
+                    if (dataSet.size() > 0) {
+                        visibleLayout.setVisibility(View.VISIBLE);
+                        emptyLayout.setVisibility(View.GONE);
+
+                    } else {
+                        emptyLayout.setVisibility(View.VISIBLE);
+                        visibleLayout.setVisibility(View.GONE);
+                        emptyLayout.setErrorType(EmptyLayout.NODATA);
+                        emptyLayout.setNoDataContent("您的购物车是空的");
+                    }
+                    selectAll = false;
+                    checkboxSelectAll.setImageResource(R.mipmap.ic_select_no);
+                    adapter.notifyDataSetChanged();
+                    updatePrice();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<List<CartTotal>>> call, Throwable t) {
+                dissMissDialog();
+                ptrFrame.refreshComplete();
+            }
+        });
 
     }
 

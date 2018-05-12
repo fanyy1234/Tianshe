@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/common_header"/>
+
+    <include layout="@layout/common_header" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -21,12 +23,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="14dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单状态："/>
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/appcolor"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="配送地址"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:background="@color/white">
                 <LinearLayout
-                    android:id="@+id/address_info"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -56,25 +81,6 @@
                             android:text="请添加收货地址"/>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:gravity="center_vertical">
-                    <TextView
-                        android:id="@+id/select_user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="选择收货人"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/arrow_right"/>
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/arrow_right"/>
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/cloth_list"
@@ -86,39 +92,68 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="运费"/>
+                    android:text="合计"/>
                 <TextView
+                    android:id="@+id/price_sum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="包邮"/>
             </RelativeLayout>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订单留言："/>
-                <com.sunday.common.widgets.ClearEditText
-                    android:id="@+id/order_remark"
-                    android:layout_marginLeft="5dp"
-                    android:textColorHint="@color/text_light_black"
-                    android:layout_width="match_parent"
+                    android:text="优惠价格"/>
+                <TextView
+                    android:id="@+id/discount_money"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="6dp"
-                    android:hint="对本次交易的说明"
-                    android:textSize="14sp"
-                    android:background="@null"
-                    android:inputType="text" />
+                    android:layout_alignParentRight="true"
+                    android:text=""/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实付价"/>
+                <TextView
+                    android:id="@+id/real_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text=""/>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/size_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_marginTop="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="尺寸"/>
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
             </LinearLayout>
 
             <RelativeLayout
@@ -130,66 +165,61 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商品金额"/>
+                    android:text="订单编号"/>
                 <TextView
-                    android:id="@+id/goods_sum"
+                    android:id="@+id/order_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:textColor="@color/appcolor"
-                    android:text="￥610"/>
+                    android:text=""/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:visibility="gone"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="运费"/>
+                    android:text="下单时间"/>
                 <TextView
+                    android:id="@+id/create_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:textColor="@color/appcolor"
-                    android:text="￥610"/>
+                    android:text=""/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:visibility="gone"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="余额抵扣"/>
+                    android:text="支付时间"/>
                 <TextView
-                    android:id="@+id/account_dikou"
+                    android:id="@+id/pay_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:textColor="@color/appcolor"
-                    android:text="￥610"/>
+                    android:text=""/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:visibility="gone"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="总计"/>
+                    android:text="发货时间"/>
                 <TextView
+                    android:id="@+id/send_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:textColor="@color/appcolor"
-                    android:text="￥610"/>
+                    android:text=""/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
@@ -204,43 +234,28 @@
         android:background="@color/white"
         android:gravity="center"
         android:padding="12dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="应付金额："/>
-        <TextView
-            android:id="@+id/final_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/red"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:visibility="gone"
-            android:text="共"/>
-        <TextView
-            android:id="@+id/goods_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="件"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical">
             <TextView
-                android:id="@+id/btn_buy"
+                android:id="@+id/btn_cancel"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:background="@drawable/common_radius_orange_shape"
                 android:gravity="center"
-                android:text="购买"
+                android:text="取消订单"
+                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/btn_buy"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/common_radius_orange_shape"
+                android:gravity="center"
+                android:text="立即支付"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

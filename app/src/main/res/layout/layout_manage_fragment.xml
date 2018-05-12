@@ -160,6 +160,12 @@
             android:layout_marginTop="1px"
             android:drawableLeft="@mipmap/menu6"
             android:text="收货地址" />
+        <TextView
+            android:id="@+id/menu8"
+            style="@style/manage_menu_item"
+            android:layout_marginTop="1px"
+            android:drawableLeft="@mipmap/menu6"
+            android:text="我的订单" />
     </LinearLayout>
 
 </ScrollView>

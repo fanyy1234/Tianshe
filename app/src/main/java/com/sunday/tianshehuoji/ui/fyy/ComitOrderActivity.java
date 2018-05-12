@@ -12,16 +12,27 @@ import com.sunday.common.model.ResultDO;
 import com.sunday.common.utils.Constants;
 import com.sunday.common.utils.ToastUtils;
 import com.sunday.common.widgets.ClearEditText;
+import com.sunday.common.widgets.EmptyLayout;
+import com.sunday.common.widgets.UIAlertView;
 import com.sunday.member.base.BaseActivity;
 import com.sunday.member.utils.SharePerferenceUtils;
+import com.sunday.tianshehuoji.BaseApplication;
 import com.sunday.tianshehuoji.R;
 import com.sunday.tianshehuoji.adapter.MultiTypeAdapter;
+import com.sunday.tianshehuoji.entity.Account;
 import com.sunday.tianshehuoji.entity.Address;
+import com.sunday.tianshehuoji.entity.CartItem;
+import com.sunday.tianshehuoji.entity.CartListItem;
+import com.sunday.tianshehuoji.entity.CartTotal;
 import com.sunday.tianshehuoji.entity.shop.MemberSize;
 import com.sunday.tianshehuoji.http.AppClient;
 import com.sunday.tianshehuoji.model.SubmitOrderProduct;
 import com.sunday.tianshehuoji.model.Visitable;
+import com.sunday.tianshehuoji.ui.product.BuyOrderActivity;
+import com.sunday.tianshehuoji.utils.EntityUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +82,10 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
     TextView btnBuy;
 
     private Address address;
+    private int cartId;
+    private String desc;
+    private BigDecimal balance;
+    private Integer realMoney;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,15 +102,7 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
         layoutManager = new LinearLayoutManager(this);
         clothList.setLayoutManager(layoutManager);
         clothList.setAdapter(adapter);
-        for (int i = 0; i < 3; i++) {
-            SubmitOrderProduct product = new SubmitOrderProduct();
-            product.setName("男士衬衫sssssssssssssssssssssssssssssss" + i);
-            product.setNum(1);
-            product.setGuige("白色Lssssssssssssss");
-            product.setPrice("￥610");
-            models.add(product);
-        }
-        adapter.notifyDataSetChanged();
+        getData();
 
         selectUser.setOnClickListener(this);
         btnBuy.setOnClickListener(this);
@@ -115,6 +122,8 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
                     ToastUtils.showToast(mContext,"请选择收货地址");
                     return;
                 }
+                desc = orderRemark.getText().toString().trim();
+                showPayWindow();
                 break;
             default:
                 break;
@@ -176,5 +185,133 @@ public class ComitOrderActivity extends BaseActivity implements View.OnClickList
             userMobile.setText(address.getMobile());
             userAddr.setText(String.format("收货地址:%1s", address.getAddress()));
         }
+    }
+
+    public void getData() {
+        showLoadingDialog(0);
+        Call<ResultDO<List<CartTotal>>> call = AppClient.getAppAdapter().getCartList(memberId);
+        call.enqueue(new Callback<ResultDO<List<CartTotal>>>() {
+            @Override
+            public void onResponse(Call<ResultDO<List<CartTotal>>> call, Response<ResultDO<List<CartTotal>>> response) {
+                if (isFinish) {
+                    return;
+                }
+                dissMissDialog();
+                ResultDO<List<CartTotal>> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    if (resultDO.getResult() == null) {
+                        return;
+                    }
+                    if (resultDO.getResult().get(0).getCartItem() != null && !resultDO.getResult().get(0).getCartItem().isEmpty()) {
+                        int sumPrice = 0;
+                        for (int i = 0; i < resultDO.getResult().get(0).getCartItem().size(); i++) {
+                            CartItem item = resultDO.getResult().get(0).getCartItem().get(i);
+                            SubmitOrderProduct product = new SubmitOrderProduct();
+                            product.setName(item.getName());
+                            product.setNum(item.getNum());
+                            product.setGuige("");
+                            product.setImg(item.getLogo()==null?"000":item.getLogo());
+                            product.setPrice("￥"+item.getPrice());
+                            sumPrice += item.getPrice()*item.getNum();
+                            models.add(product);
+                            cartId = item.getCartId();
+                        }
+                        goodsSum.setText("￥"+ sumPrice);
+                        finalMoney.setText("￥"+ sumPrice);
+                        realMoney = sumPrice;
+                    }
+                    adapter.notifyDataSetChanged();
+                    getMemberDetail();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<List<CartTotal>>> call, Throwable t) {
+                dissMissDialog();
+            }
+        });
+    }
+    private void getMemberDetail() {
+        Call<ResultDO<Account>> call = AppClient.getAppAdapter().getMemberById(memberId.toString());
+        call.enqueue(new Callback<ResultDO<Account>>() {
+            @Override
+            public void onResponse(Call<ResultDO<Account>> call, Response<ResultDO<Account>> response) {
+                ResultDO<Account> resultDO = response.body();
+                if (resultDO == null) {
+                    return;
+                }
+                if (resultDO.getCode() == 0) {
+                    balance = resultDO.getResult().getEnergyBean();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<Account>> call, Throwable t) {
+                ToastUtils.showToast(mContext, R.string.network_error);
+            }
+        });
+    }
+    private void showPayWindow() {
+        if (balance == null) {
+            return;
+        }
+        final UIAlertView view = new UIAlertView(mContext, "确认支付", String.format("当前可用余额:%s", balance.setScale(2, RoundingMode.HALF_UP)),
+                "取消", "确定");
+        view.show();
+        view.setClicklistener(new UIAlertView.ClickListenerInterface() {
+            @Override
+            public void doLeft() {
+                view.dismiss();
+            }
+
+            @Override
+            public void doRight() {
+                view.dismiss();
+                if (balance.compareTo(BigDecimal.valueOf(realMoney))>=0){
+                    buyWithBalance();
+                }
+                else {
+                    Intent intent = new Intent(ComitOrderActivity.this,BuyOrderActivity.class);
+                    intent.putExtra("cartId",cartId+"");
+                    intent.putExtra("linkPhone",address.getMobile());
+                    intent.putExtra("linkName",address.getName());
+                    intent.putExtra("desc",desc);
+                    intent.putExtra("addressId",Integer.valueOf(address.getId()));
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+    private void buyWithBalance(){
+        showLoadingDialog(0);
+        Call<ResultDO<String>> call = AppClient.getAppAdapter().createOrder(cartId, address.getMobile(), address.getName(), desc,null,null,null);
+        call.enqueue(new Callback<ResultDO<String>>() {
+            @Override
+            public void onResponse(Call<ResultDO<String>> call, Response<ResultDO<String>> response) {
+                if (response.body() == null) {
+                    dissMissDialog();
+                    return;
+                }
+                com.alibaba.fastjson.JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
+
+                if (response.body().getCode()==0){
+                    ToastUtils.showToast(mContext, "支付成功");
+                    BaseApplication.getInstance().setConsumed(true);//余额变动
+                    finish();
+                }
+                else {
+                    dissMissDialog();
+                    ToastUtils.showToast(mContext, response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultDO<String>> call, Throwable t) {
+                dissMissDialog();
+            }
+        });
     }
 }

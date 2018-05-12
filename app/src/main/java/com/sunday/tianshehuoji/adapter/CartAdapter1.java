@@ -20,6 +20,7 @@ import com.sunday.tianshehuoji.entity.CartItem;
 import com.sunday.tianshehuoji.entity.CartListItem;
 import com.sunday.tianshehuoji.ui.fyy.ProductDetailActivity;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,20 +58,20 @@ public class CartAdapter1 extends RecyclerView.Adapter {
         CartListItem item = dataSet.get(position);
         listHolder.listTitle.setText(item.getTypeName());
         listHolder.adapter.setParentType(item.getType());
-        if (item.getType() == 1) {
-            //预热商品
-            if (item.isSelected()) {
-                listHolder.listSelectAll.setImageResource(editType ? R.mipmap.ic_select : R.mipmap.check_unse);
-            } else {
-                listHolder.listSelectAll.setImageResource(editType ? R.mipmap.ic_select_no : R.mipmap.check_unse);
-            }
-        } else {
+//        if (item.getType() == 1) {
+//            //预热商品
+//            if (item.isSelected()) {
+//                listHolder.listSelectAll.setImageResource(editType ? R.mipmap.ic_select : R.mipmap.check_unse);
+//            } else {
+//                listHolder.listSelectAll.setImageResource(editType ? R.mipmap.ic_select_no : R.mipmap.check_unse);
+//            }
+//        } else {
             if (item.isSelected()) {
                 listHolder.listSelectAll.setImageResource(R.mipmap.ic_select);
             } else {
                 listHolder.listSelectAll.setImageResource(R.mipmap.ic_select_no);
             }
-        }
+//        }
 
         listHolder.listSelectAll.setOnClickListener(onClickListener);
         listHolder.listSelectAll.setTag(position);
@@ -116,11 +117,10 @@ public class CartAdapter1 extends RecyclerView.Adapter {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(mContext, ProductDetailActivity.class);
-                    CartItem cartItem = (CartItem) adapter.getItem(position);
-                    intent.putExtra("type", cartItem.getType());
-                    intent.putExtra("productId", cartItem.getProductId());
-                    mContext.startActivity(intent);
+//                    Intent intent = new Intent(mContext, ProductDetailActivity.class);
+//                    CartItem cartItem = (CartItem) adapter.getItem(position);
+//                    intent.putExtra("productId", cartItem.getProductId());
+//                    mContext.startActivity(intent);
                 }
             });
 
@@ -163,28 +163,22 @@ public class CartAdapter1 extends RecyclerView.Adapter {
             }
 
             CartItem cartItem = list.get(position);
-            if (!TextUtils.isEmpty(cartItem.getImage())) {
+            if (!TextUtils.isEmpty(cartItem.getLogo())) {
                 Picasso.with(mContext)
-                        .load(cartItem.getImage())
+                        .load(cartItem.getLogo())
                         .placeholder(R.mipmap.default_img)
                         .error(R.mipmap.default_img)
                         .into(cartHolder.ivGoods);
             }
-            cartHolder.ivCheckGood.setVisibility(View.VISIBLE);
+            cartHolder.ivCheckGood.setVisibility(View.GONE);
             cartHolder.llGoodLeft.setVisibility(View.VISIBLE);
             cartHolder.deleteImg.setVisibility(View.VISIBLE);
-            cartHolder.productTitle.setText(cartItem.getProductName());
-            cartHolder.productSpec.setText(String.format("%s", cartItem.getElements()));
-            cartHolder.productPrice.setText(String.format("¥%s", cartItem.getPrice().setScale(2, RoundingMode.HALF_UP)));
+            cartHolder.productTitle.setText(cartItem.getName());
+            cartHolder.productSpec.setText(String.format("%s", ""));
+            cartHolder.productPrice.setText(String.format("¥%s", BigDecimal.valueOf(cartItem.getPrice()).setScale(2, RoundingMode.HALF_UP)));
             cartHolder.tvNum2.setText(String.valueOf(cartItem.getNum()));
             cartHolder.productNum.setText(String.valueOf("X" + cartItem.getNum()));
-            if (cartItem.getTypeName().equals("积分商城")){
-                cartHolder.productScore.setVisibility(View.VISIBLE);
-                cartHolder.productScore.setText(cartItem.getScore()+"积分");
-            }
-            else {
-                cartHolder.productScore.setVisibility(View.GONE);
-            }
+            cartHolder.productScore.setVisibility(View.GONE);
 
             if (parentType == 1) {
                 //预热商品
@@ -202,19 +196,13 @@ public class CartAdapter1 extends RecyclerView.Adapter {
             }
 
 
-            //售罄
-            if (cartItem.getProductStore() == 0) {
-                cartHolder.ivCheckGood.setVisibility(View.INVISIBLE);
-                cartHolder.llGoodLeft.setVisibility(View.INVISIBLE);
-                cartHolder.deleteImg.setVisibility(editType?View.VISIBLE:View.GONE);
-            } else if (!editType) {
+            if (!editType) {
                 //cartHolder.ivCheckGood.setVisibility(View.INVISIBLE);
                 cartHolder.llGoodLeft.setVisibility(View.INVISIBLE);
                 cartHolder.deleteImg.setVisibility(View.INVISIBLE);
             }
 
-            cartHolder.imgFlag.setVisibility(cartItem.getProductStore() == 0 || cartItem.getIsInvalid() == 1 ? View.VISIBLE : View.GONE);
-            cartHolder.imgFlag.setImageResource(cartItem.getProductStore() == 0 ? R.mipmap.sell_out : R.mipmap.invalid);
+            cartHolder.imgFlag.setVisibility(View.GONE);
 
 
             cartHolder.deleteImg.setOnClickListener(onClickListener);

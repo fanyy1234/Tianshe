@@ -38,6 +38,10 @@ public class TiansheProductViewHolder extends BaseViewHolder<TiansheProduct> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(adapter.getmContext(), ProductDetailActivity.class);
+                intent.putExtra("name",model.getImg());
+                intent.putExtra("id",model.getId());
+                intent.putExtra("price",model.getNewPrice());
+                intent.putExtra("img",model.getImg());
                 adapter.getmContext().startActivity(intent);
             }
         });

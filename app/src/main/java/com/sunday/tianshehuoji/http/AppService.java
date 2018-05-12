@@ -5,6 +5,7 @@ import com.sunday.tianshehuoji.entity.Account;
 import com.sunday.tianshehuoji.entity.Address;
 import com.sunday.tianshehuoji.entity.Bonus;
 import com.sunday.tianshehuoji.entity.CardType;
+import com.sunday.tianshehuoji.entity.CartTotal;
 import com.sunday.tianshehuoji.entity.CashAccount;
 import com.sunday.tianshehuoji.entity.CashDetail;
 import com.sunday.tianshehuoji.entity.CashRecord;
@@ -14,6 +15,7 @@ import com.sunday.tianshehuoji.entity.Image;
 import com.sunday.tianshehuoji.entity.Img;
 import com.sunday.tianshehuoji.entity.Income;
 import com.sunday.tianshehuoji.entity.Notice;
+import com.sunday.tianshehuoji.entity.OrderResult;
 import com.sunday.tianshehuoji.entity.Profit;
 import com.sunday.tianshehuoji.entity.ProfitRecord;
 import com.sunday.tianshehuoji.entity.Room;
@@ -537,4 +539,35 @@ public interface AppService {
                                        @Field("linkName")String linkName,@Field("desc")String desc,
                                        @Field("addressId")Integer addressId,@Field("sizeId")Integer sizeId,
                                             @Field("type")Integer type);
+    /**
+     * 购物车列表
+     */
+    @FormUrlEncoded
+    @POST("/mobile/shop/cart/getCart")
+    Call<ResultDO<List<CartTotal>>> getCartList(@Field("memberId") Integer memberId);
+    /**
+     * 更新购物车
+     */
+    @FormUrlEncoded
+    @POST("/mobile/shop/cart/updateCart")
+    Call<ResultDO> updateCart(@Field("cartItemId") Integer cartItemId,@Field("num") Integer num);
+    /**
+     * 获取天奢商城订单列表
+     */
+    @FormUrlEncoded
+    @POST("/mobile/order/getMarketOrder")
+    Call<ResultDO<List<com.sunday.tianshehuoji.entity.Order>>> getMarketOrder(@Field("memberId") Integer memberId,@Field("pageNo") Integer pageNo,
+                                  @Field("status") Integer status,@Field("pageSize") Integer pageSize);
+    /**
+     * 取消
+     */
+    @FormUrlEncoded
+    @POST("/mobile/order/cancelOrder")
+    Call<ResultDO> cancelOrder(@Field("orderId") Integer orderId);
+    /**
+     * POST /mobile/order/getOrderDetail 根据订单id，获取订单详情
+     */
+    @FormUrlEncoded
+    @POST("/mobile/order/getOrderDetail")
+    Call<ResultDO<OrderResult>> getOrderDetailByOrderId(@Field("orderId") Integer orderId);
 }

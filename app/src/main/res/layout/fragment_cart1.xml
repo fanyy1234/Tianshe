@@ -71,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:visibility="gone"
                 android:src="@mipmap/ic_select_no"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -78,6 +79,7 @@
                 android:layout_toRightOf="@+id/checkbox_select_all"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
+                android:visibility="gone"
                 android:text="全选"/>
 
             <TextView
