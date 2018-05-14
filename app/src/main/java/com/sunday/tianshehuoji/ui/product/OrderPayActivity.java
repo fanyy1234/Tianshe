@@ -128,9 +128,9 @@ public class OrderPayActivity extends BaseActivity {
                     dissMissDialog();
                     return;
                 }
-                com.alibaba.fastjson.JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
-                if (resultDO.getCode() == 0) {
-                    alipayInfo = jsonResult.getString("result");
+                JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
+                if (resultDO.getCode() == -10) {
+                    alipayInfo = jsonResult.getString("message");
                     Runnable payRunnable = new Runnable() {
                         @Override
                         public void run() {
@@ -169,9 +169,9 @@ public class OrderPayActivity extends BaseActivity {
                     dissMissDialog();
                     return;
                 }
-                com.alibaba.fastjson.JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
-                if (resultDO.getCode() == 0) {
-                    JSONObject json = JSONObject.parseObject(jsonResult.getString("result"));
+                JSONObject jsonResult = EntityUtil.ObjectToJson3(response.body());
+                if (resultDO.getCode() == -10) {
+                    JSONObject json = JSONObject.parseObject(jsonResult.getString("message"));
                     PayReq req = new PayReq();
                     req.appId			= json.getString("appId");
                     req.partnerId		= json.getString("machId");
